@@ -1,0 +1,103 @@
+@mixin prefix($property, $value) {
+ -webkit-#{$property}: #{$value};
+ -moz-#{$property}: #{$value};
+ -ms-#{$property}: #{$value};
+ -o-#{$property}: #{$value};
+ #{$property}: #{$value};
+}
+
+@mixin font-smoothing($value: antialiased) {
+  @if $value == antialiased {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  } @else {
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+  }
+}
+
+/* Reset */
+html,
+body,
+div {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/* Box-sizing border-box */
+* {
+  @include prefix(border-sizing, border-box);
+  @include prefix(border-radius, 0 !important);
+}
+
+/* Set up a default font and some padding to provide breathing room */
+body {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  @include font-smoothing();
+}
+
+input.ng-invalid:hover, input.ng-invalid:focus, input.ng-invalid.ng-dirty {
+  border-bottom: 1px solid #c83514; /* +1 */
+}
+
+input.ng-valid:hover, input.ng-valid:focus {
+  border-bottom: 1px solid #0ec14a; /* +1 */
+}
+
+.waves-effect {
+  /* waves-effect sets z-index to 1 and this creates issues with @ngui/auto-complete */
+  z-index: 0 !important;
+}
+
+.custom-select {
+  border-left: 0 !important;
+  border-right: 0 !important;
+  border-top: 0 !important;
+  @include prefix(box-shadow, none !important);
+}
+
+/* Compressed table */
+.table-condensed > thead > tr > th,
+.table-condensed > tbody > tr > th,
+.table-condensed > tfoot > tr > th {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-weight: bold;
+}
+
+.table-condensed > thead > tr > td,
+.table-condensed > tbody > tr > td,
+.table-condensed > tfoot > tr > td {
+  padding: 2px;
+}
+
+/* For more visibility, we use bold font for buttons */
+.btn {
+  font-weight: bold !important;
+}
+
+/* Prevent clicking on disabled buttons */
+button:disabled {
+  cursor: not-allowed;
+  pointer-events: all !important;
+}
+
+.selected {
+  background: lightskyblue !important;
+  @include prefix(box-shadow, 0 0 15px 1px rgba(0, 0, 0, 0.26));
+}
+
+.vertical-text {
+  text-align: center;
+  writing-mode: vertical-rl;
+  @include prefix(transform, rotate(180deg));
+  margin-top: 25px;
+  font-size: 12px;
+}
+
+label {
+  z-index: 1;
+}
+

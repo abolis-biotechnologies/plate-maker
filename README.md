@@ -26,17 +26,25 @@ Alternatively, please have a look at our shared Pycharm run configurations or at
 # Contribution
 
 - Clone this project on your local machine
-- Make your business
-- Push it into the remote repository
-- Update the dependents projects accordingly (by merging the new changes) 
+- Make your modifications
+- Push them into the remote repository
+- Update the dependents projects accordingly (by merging the new changes)
 
 # Generate a new library
 
-If you want to contribute at this project by adding a new library for example, you can do it following the next steps:
+If you want to create a library in order to be used in a bigger application, you can do it following the next steps:
 
-- Create a new repository for your current library (`library-client` for example)
-- Clone this project `seed-client` on your local machine
-- Set the `library-client` as a second remote repository in your current project.
+- Create a new repository for your new library (`library-client` for example)
+- Clone this project `seed-client` and rename it on your local machine
+  `git clone git@gitlab.abolis.loc:abolis/seed-client.git library-client`
+- Configure the current project to track two remote repositories
+  ```bash
+    git branch -m seed #rename master branch by seed 
+    git remote rename origin seed-client #rename origin remote by seed-client
+    git remote add origin git@gitlab.abolis.loc:abolis/library-client.git #add a the library remote repository
+    git checkout branch master #create a new branch master (default branch)
+    git push -u origin master #push into the remote library-client/master branch
+  ```
 - Generate your new library using Angular-CLI: `ng generate library LIBRARY-NAME`. This will configure your project 
   automatically to host the new library and create a new directory for your library `/projects/@abolis/LIBRARY-NAME`.
 - Create your library business

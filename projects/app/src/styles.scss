@@ -58,6 +58,14 @@ input.ng-valid:hover, input.ng-valid:focus {
   @include prefix(box-shadow, none !important);
 }
 
+.zone-dashed {
+  border: 1px dashed #bdbdbd;
+}
+
+.zone-selected {
+  border: 2px solid #2bbbad;
+}
+
 /* Compressed table */
 .table-condensed > thead > tr > th,
 .table-condensed > tbody > tr > th,

@@ -1,4 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-dark stylish-color custom-navbar">
+<nav class="navbar navbar-expand-lg navbar-dark stylish-color custom-navbar"
+     [style.display]="username ? 'flex': 'none'">
   <a class="navbar-brand pt-0" href="/">
     <img src="../assets/png/logo-awsome-light.png" height="20" alt="Awsome Logo">
   </a>
@@ -12,11 +13,17 @@
 
     </ul>
 
-    <load-fixture></load-fixture>
+    <load-fixture class="d-inline-block" *ngIf="username === 'test-user'"></load-fixture>
+
+    <aws-logout></aws-logout>
   </div>
 </nav>
 
-<div class="container-fluid">
-  <toaster-container [toasterconfig]="toasterconfig"></toaster-container>
-  <router-outlet></router-outlet>
+<div class="container-fluid" [ngClass]="{'auth-background': !username}">
+  <div class="row">
+    <div class="col p-0">
+      <toaster-container [toasterconfig]="toasterconfig"></toaster-container>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 </div>

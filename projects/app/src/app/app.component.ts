@@ -16,7 +16,7 @@ export class AppComponent {
   });
 
   constructor(private authenticationService: AuthenticationService) {
-    this.authenticationService.currentUserNameSubject.subscribe(username => this.username = username);
+    this.authenticationService.usernameSubject.subscribe(username => setTimeout(() => this.username = username, 0));
   }
 
 }

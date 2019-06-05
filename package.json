@@ -12,7 +12,7 @@
   },
   "private": true,
   "dependencies": {
-    "@abolis/shared-client": "http://worker.abolis.loc:8888/shared-client.v.3.3.0.tar",
+    "@abolis/shared-client": "http://worker.abolis.loc:8888/shared-client.v.3.6.7.tar",
     "@angular/animations": "~7.2.0",
     "@angular/common": "~7.2.0",
     "@angular/compiler": "~7.2.0",

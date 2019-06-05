@@ -1,9 +1,9 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="serve.app" type="js.build_tools.npm">
+  <configuration default="false" name="watch.lib" type="js.build_tools.npm">
     <package-json value="$PROJECT_DIR$/package.json" />
     <command value="run" />
     <scripts>
-      <script value="serve.app" />
+      <script value="watch.lib" />
     </scripts>
     <node-interpreter value="project" />
     <envs />

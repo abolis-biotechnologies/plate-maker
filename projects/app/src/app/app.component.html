@@ -1,7 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-dark stylish-color custom-navbar"
-     [style.display]="username ? 'flex': 'none'">
+<nav class="navbar navbar-expand-lg navbar-dark stylish-color custom-navbar">
   <a class="navbar-brand pt-0" href="/">
-    <img src="../assets/png/logo-awsome-light.png" height="20" alt="Awsome Logo">
+    <img src="../assets/png/plate_maker.png" height="25" alt="Plate Maker Logo">
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
           aria-controls="navbarText"
@@ -10,19 +9,27 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
-
+      <li class="nav-item">
+        <a id="create-plate-navbar-link"
+           class="nav-link font-weight-bold"
+           [routerLink]="['createPlate']"
+           [routerLinkActive]="['router-link-active']"
+           [routerLinkActiveOptions]="{exact:true}">Create</a>
+      </li>
+      <li class="nav-item">
+        <a id="display-plate-navbar-link"
+           class="nav-link font-weight-bold"
+           [routerLink]="['displayPlate']"
+           [routerLinkActive]="['router-link-active']"
+           [routerLinkActiveOptions]="{exact:true}">Display</a>
+      </li>
     </ul>
-
-    <load-fixture class="d-inline-block" *ngIf="username === 'test-user'"></load-fixture>
-
-    <aws-logout></aws-logout>
   </div>
 </nav>
 
-<div class="container-fluid" [ngClass]="{'auth-background': !username}">
+<div class="container-fluid">
   <div class="row">
     <div class="col p-0">
-      <toaster-container [toasterconfig]="toasterconfig"></toaster-container>
       <router-outlet></router-outlet>
     </div>
   </div>

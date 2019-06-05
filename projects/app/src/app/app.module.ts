@@ -2,31 +2,34 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
 
-import { ToasterModule } from 'angular2-toaster';
+import { DragToSelectModule } from 'ngx-drag-to-select';
 
-import { DesignService, SharedClientModule } from '@abolis/shared-client';
+import { PlateMakerModule } from '@abolis/plate-maker';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { CreatePlateAppComponent } from './create-plate-app/create-plate-app.component';
+import { DisplayPlateAppComponent } from './display-plate-app/display-plate-app.component';
 
 @NgModule({
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
     HttpClientModule,
-    ToasterModule.forRoot(),
+    ReactiveFormsModule,
+    DragToSelectModule.forRoot(),
+    PlateMakerModule,
     AppRoutingModule,
-    SharedClientModule
   ],
   declarations: [
-    AppComponent
+    AppComponent,
+    CreatePlateAppComponent,
+    DisplayPlateAppComponent
   ],
-  providers: [DesignService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor() {
-    (<any>window).awsome = {};
-  }
 }

@@ -1,0 +1,37 @@
+<div class="container-fluid mt-2" *ngIf="plate.length">
+  <div class="row">
+    <div class="col-8">
+      <div class="card">
+        <div class="card-body p-0">
+          <lib-plate-maker [wells]="plate"
+                           (selected)="selected($event)"
+                           (deleted)="clearWells($event)">
+          </lib-plate-maker>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="card">
+        <div class="card-header elegant-color white-text text-center font-weight-bold">Configuration</div>
+        <div class="card-body">
+          <div>
+            <label for="field-object">Main Object</label>
+            <select id="field-object" class="active custom-select" [formControl]="objectControl">
+              <option value=""></option>
+              <option *ngFor="let objValue of objectValues" [value]="objValue">{{objValue}}</option>
+            </select>
+          </div>
+          <div class="my-3">
+            <label for="other-field-object">Other Object</label>
+            <select id="other-field-object" class="active custom-select" [formControl]="otherObjectControl">
+              <option value=""></option>
+              <option *ngFor="let othObjValue of otherObjectValues" [value]="othObjValue">{{othObjValue}}</option>
+            </select>
+          </div>
+          <button class="btn btn-sm btn-dark float-right" (click)="savePlate()">save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

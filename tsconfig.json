@@ -17,6 +17,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@abolis/plate-maker": [
+        "dist/plate-maker"
+      ],
+      "@abolis/plate-maker/*": [
+        "dist/plate-maker/*"
+      ]
+    }
   }
 }

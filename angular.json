@@ -25,11 +25,10 @@
             "styles": [
               "node_modules/bootstrap/scss/bootstrap.scss",
               "node_modules/mdbootstrap/scss/mdb.scss",
-              "node_modules/angular2-toaster/toaster.css",
               "projects/app/src/styles.scss"
             ],
             "scripts": [
-              "node_modules/mdbootstrap/js/jquery-3.3.1.min.js",
+              "node_modules/mdbootstrap/js/jquery-3.4.1.min.js",
               "node_modules/mdbootstrap/js/popper.min.js",
               "node_modules/mdbootstrap/js/bootstrap.js",
               "node_modules/mdbootstrap/js/mdb.js"
@@ -84,6 +83,32 @@
           "options": {
             "tsConfig": [
               "projects/app/tsconfig.app.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "@abolis/plate-maker": {
+      "root": "projects/@abolis/plate-maker",
+      "sourceRoot": "projects/@abolis/plate-maker/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/@abolis/plate-maker/tsconfig.lib.json",
+            "project": "projects/@abolis/plate-maker/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/@abolis/plate-maker/tsconfig.lib.json"
             ],
             "exclude": [
               "**/node_modules/**"

@@ -1,3 +1,10 @@
+// Overriding ngx-drag-to-select sass variables - Should be before importing ngx-drag-to-select scss file
+$selected-item-border-size: 2px;
+$selected-item-border-color: #000000;
+
+// import ngx-drag-to-select scss file
+@import "~ngx-drag-to-select/scss/ngx-drag-to-select";
+
 @mixin prefix($property, $value) {
  -webkit-#{$property}: #{$value};
  -moz-#{$property}: #{$value};
@@ -90,11 +97,6 @@ input.ng-valid:hover, input.ng-valid:focus {
 button:disabled {
   cursor: not-allowed;
   pointer-events: all !important;
-}
-
-.selected {
-  background: lightskyblue !important;
-  @include prefix(box-shadow, 0 0 15px 1px rgba(0, 0, 0, 0.26));
 }
 
 .vertical-text {

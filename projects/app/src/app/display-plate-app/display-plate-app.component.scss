@@ -1,0 +1,19 @@
+.scrollable {
+  max-width: 100%;
+  max-height: 652px;
+  background-color: #F5F5F5;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.barcode {
+  cursor: pointer;
+  background: #b7b7b7;
+  color: #121212;
+
+  &:hover {
+    transform: scale(1.1) translateX(30px);
+    transition: 300ms;
+    font-weight: bold
+  }
+}

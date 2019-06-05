@@ -1,0 +1,42 @@
+<div class="container-fluid mt-2" *ngIf="plate.length">
+  <div class="row">
+    <div class="col-8">
+      <div class="card">
+        <div class="card-body p-0">
+          <lib-plate-maker [wells]="plate" [disableSelection]="true"></lib-plate-maker>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="card">
+        <div class="card-header elegant-color white-text text-center font-weight-bold">Barcode(s)</div>
+        <div class="card-body">
+          <div class="d-flex justify-content-between pb-2">
+            <div class="mt-1 p-0 font-weight-bold"></div>
+            <div class="p-0">
+              <div class="md-form form-sm m-0 d-inline-block">
+                <input type="text"
+                       id="barcode-filter"
+                       class="form-control form-control-sm m-0 p-0"
+                       placeholder="Filter"
+                       [formControl]="filterBarcodesControl">
+              </div>
+              <span class="badge badge-light z-depth-0 rounded px-0 pl-2 ml-2">
+                Count <span class="elegant-color white-text rounded ml-1 p-1">{{displayedBarcodes.length}}</span>
+              </span>
+            </div>
+          </div>
+          <div class="scrollable p-2" *ngIf="displayedBarcodes.length">
+            <div class="barcode my-2 mx-1 px-3 py-1 z-depth-1"
+                 *ngFor="let barcode of displayedBarcodes"
+                 [@divState]="this.selectedBarcode === barcode ? 'selected' : 'normal'"
+                 (click)="onSelectedBarcode(barcode)">
+              {{barcode}}
+            </div>
+          </div>
+          <div class="py-2" *ngIf="!displayedBarcodes.length">No plate(s) found ¯\_(ツ)_/¯</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

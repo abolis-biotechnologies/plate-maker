@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { EmptyComponent, LoginComponent, RegisterComponent, AuthenticationGuard } from '@abolis/shared-client';
+
+import { CreatePlateAppComponent } from './create-plate-app/create-plate-app.component';
+import { DisplayPlateAppComponent } from './display-plate-app/display-plate-app.component';
 
 @NgModule({
   imports: [
     RouterModule.forRoot([
-      {path: 'login', component: LoginComponent},
-      {path: 'register', component: RegisterComponent},
-      {path: 'empty', component: EmptyComponent, canActivate: [AuthenticationGuard]},
+      {path: '', component: CreatePlateAppComponent},
+      {path: 'displayPlate', component: DisplayPlateAppComponent},
       {path: '**', redirectTo: ''},
     ])
   ],
@@ -15,4 +16,3 @@ import { EmptyComponent, LoginComponent, RegisterComponent, AuthenticationGuard 
 })
 export class AppRoutingModule {
 }
-

@@ -1,0 +1,45 @@
+@import "misc/mixins";
+
+* {
+  @include prefix(border-sizing, border-box);
+}
+
+.plate-container {
+  @include prefix(border-radius, '5px');
+}
+
+.plate-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.plate-col {
+  display: flex;
+  flex-direction: column;
+  height: 80px;
+  flex: 1 0 1px;
+  margin: 4px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #dddddd;
+  font-weight: bold;
+  @include prefix(text-shadow, '-2px 1px 10px rgba(0, 0, 0, 0.62)');
+}
+
+.headers {
+  font-weight: bold;
+  position: absolute;
+  font-size: 14px;
+  color: black;
+  @include prefix(text-shadow, 'none');
+
+  &.row-index {
+    left: 20px;
+    margin-top: 35px;
+  }
+
+  &.col-index {
+    top: 15px;
+  }
+}

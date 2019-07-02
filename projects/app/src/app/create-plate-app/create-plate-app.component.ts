@@ -17,7 +17,8 @@ export class CreatePlateAppComponent implements OnDestroy {
   objectControl: FormControl = new FormControl();
   otherObjectControl: FormControl = new FormControl();
   objectValues = ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve'];
-  otherObjectValues = ['Alpha', 'Beta', 'gamma', 'Delta'];
+  otherObjectValues = ['Alpha', 'Beta', 'Gamma', 'Delta'];
+  printed = false;
   subscriptions: Subscription[] = [];
 
   constructor() {
@@ -67,9 +68,13 @@ export class CreatePlateAppComponent implements OnDestroy {
     this.selectedWells.forEach(selectedWell => selectedWell.bgColor = obj.value !== '' ? group.color : '#ffffff');
   }
 
-  savePlate = () => console.log(this.plate);
+  savePlate(): void {
+    this.printed = true;
+    console.log(this.plate);
+    setTimeout(() => this.printed = false, 3000);
+  }
 
-  clearWells(wells: Well[]) {
+  clearWells(wells: Well[]): void {
     this.selectedWells = wells;
     this.selectedWells.forEach(selectedWell => {
       selectedWell.contents = [];

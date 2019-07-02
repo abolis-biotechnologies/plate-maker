@@ -52,17 +52,21 @@ export class DisplayPlateAppComponent implements OnDestroy {
     this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
-  onSelectedBarcode(barcode: string) {
+  onSelectedBarcode(barcode: string): void {
     this.selectedBarcode = barcode;
     this.groups = [];
     this.updatePlate();
   }
 
-  filterBarcodes(barcode: string) {
-    this.displayedBarcodes = barcode.trim() ? this.barcodes.filter(b => b.toLowerCase().indexOf(barcode.trim()) > -1) : this.barcodes;
+  filterBarcodes(barcode: string): void {
+    if (barcode.trim()) {
+      this.displayedBarcodes = this.barcodes.filter(b => b.toLowerCase().indexOf(barcode.trim().toLowerCase()) > -1);
+    } else {
+      this.displayedBarcodes = this.barcodes;
+    }
   }
 
-  updatePlate() {
+  updatePlate(): void {
     this.initPlate();
     this.plate.forEach((row, rowIndex) => {
       row.forEach((well, colIndex) => {
@@ -76,7 +80,7 @@ export class DisplayPlateAppComponent implements OnDestroy {
     });
   }
 
-  private initPlate() {
+  private initPlate(): void {
     this.plate = createEmptyPlate(this.dimensions['96']);
   }
 

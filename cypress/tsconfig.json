@@ -21,8 +21,6 @@
     ],
     "types": [
       "cypress",
-      "mocha",
-      "jasmine",
       "node"
     ]
   },
@@ -36,8 +34,7 @@
   "include": [
     "integration/",
     "support/*.ts",
-    "../node_modules/cypress",
-    "../node_modules/@types/mocha"
+    "node_modules/cypress"
   ],
   "compileOnSave": false
 }

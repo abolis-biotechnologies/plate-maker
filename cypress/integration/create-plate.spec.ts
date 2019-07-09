@@ -23,14 +23,14 @@ describe('Create Plate', () => {
     checkWellsByColumn(index, '', WHITE_COLOR);
     selectWellsByColumn(index, dimension);
     cy.get('#field-object').select('One');
-    checkWellsByColumn(index, 'one', TURQOISE_COLOR);
+    checkWellsByColumn(index, 'One', TURQOISE_COLOR);
     cy.get('#other-field-object').select('Alpha');
-    checkWellsByColumn(index, ['one', 'alpha'], TURQOISE_COLOR);
+    checkWellsByColumn(index, ['One', 'Alpha'], TURQOISE_COLOR);
     selectWellsByRow(index, dimension);
     cy.get('#field-object').select('Two');
-    checkWellsByRow(index, 'two', BLUE_COLOR);
+    checkWellsByRow(index, 'Two', BLUE_COLOR);
     cy.get('#other-field-object').select('Beta');
-    checkWellsByRow(index, ['two', 'beta'], BLUE_COLOR);
+    checkWellsByRow(index, ['Two', 'Beta'], BLUE_COLOR);
     cy.get('button').contains('save').click();
     cy.get('#printed').should('have.text', ' Wells data printed into console ');
   });
@@ -39,12 +39,12 @@ describe('Create Plate', () => {
     checkAllWells('', WHITE_COLOR);
     selectAllWells();
     cy.get('#field-object').select('Three');
-    checkAllWells('three', TURQOISE_COLOR);
+    checkAllWells('Three', TURQOISE_COLOR);
     cy.get('#other-field-object').select('Gamma');
-    checkAllWells(['three', 'gamma'], TURQOISE_COLOR);
+    checkAllWells(['Three', 'Gamma'], TURQOISE_COLOR);
     // because cy.get('body').type('{del}') does not work to trigger delete keypress (reason?), I (Zahen) cleared the wells manually
     cy.get('#field-object').select('');
-    checkAllWells('gamma', WHITE_COLOR);
+    checkAllWells('Gamma', WHITE_COLOR);
     cy.get('#other-field-object').select('');
     checkAllWells('', WHITE_COLOR);
   });

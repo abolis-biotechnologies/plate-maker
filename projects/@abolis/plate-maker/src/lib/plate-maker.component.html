@@ -6,11 +6,16 @@
                       *ngIf="wells.length">
   <div class="plate-row justify-content-center" *ngFor="let row of wells; let i = index">
     <div class="headers row-index">{{coordToStr(i)}}</div>
+    <!-- tooltip, placement, show and hide delay is part of ng2-tooltip-directive (https://www.npmjs.com/package/ng2-tooltip-directive)-->
     <div class="plate-col"
          *ngFor="let col of row; let j = index"
          [dtsSelectItem]="col"
          [style.background]="col.bgColor"
-         [style.cursor]="disableSelection ? 'not-allowed' : 'pointer'">
+         [style.cursor]="disableSelection ? 'not-allowed' : 'pointer'"
+         [tooltip]="stringifyContents(col.contents)"
+         placement="top"
+         show-delay="500"
+         hide-delay="0">
       <div class="headers col-index" *ngIf="i === 0">{{j + 1}}</div>
       <div *ngFor="let content of col.contents"
            [style.color]="content.textColor"

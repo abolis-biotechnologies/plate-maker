@@ -1,5 +1,5 @@
 import { EventEmitter } from '@angular/core';
-import { WellInterface } from './plate-maker.models';
+import { ContentInterface, WellInterface } from './plate-maker.models';
 export declare class PlateMakerComponent {
     selectedWells: WellInterface[];
     wells: WellInterface[][];
@@ -9,4 +9,5 @@ export declare class PlateMakerComponent {
     keyEvent(event: KeyboardEvent): void;
     coordToStr: (index: number) => string;
     emitSelectedWells: () => void;
+    stringifyContents: (contents: ContentInterface[]) => string;
 }

@@ -33,6 +33,8 @@ lightweight, fast, configurable and reactive Drag-To-Select (DTS) component for 
         - [Simulating an Assay Plate](#simulating-an-assay-plate) 
         - [Visualising an Assay Plate](#visualising-an-assay-plate)
 - [API (for Developers)](#api-for-developers)
+    - [Customizing Styles](#customizing-styles)
+    - [Main Features](#main-features)
 - [Versioning](#versioning)
 - [Licence](#licence)
 
@@ -154,6 +156,29 @@ For more implementation details see the source code (/projects/app).
 # API (for Developers)
 
 In this section, you will find more specific information about integration of **Plate maker** library to an Angular project.
+
+## Customizing Styles
+
+- If you use scss in your project then you need to add the following instruction on the top of your styles.scss:
+
+```
+// Overriding ngx-drag-to-select sass variables - Should be before importing ngx-drag-to-select scss file
+$selected-item-border-size: 2px;
+$selected-item-border-color: #000000;
+
+// import ngx-drag-to-select scss file
+@import "~ngx-drag-to-select/scss/ngx-drag-to-select";
+```
+
+- If you use css in your project then you have to import `ngx-drag-to-select.css` and add the following lines to styles.css:
+
+```
+.dts-select-container:not(.dts-custom) .dts-select-item.selected {
+  border: 2px solid #000000;
+}
+```
+
+## Main Features
 
 In the HTML template (`plate-maker.component.html`), you can notice the `dts-select-container` component that wraps all wells you want 
 to be selectable in this component. This component is provided by the `ngx-drag-to-select` library, and it is used with following features:

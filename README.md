@@ -11,7 +11,7 @@
 ![alt text](./projects/app/src/assets/png/plate_maker_dark.png "Plate Maker")
 
 **Plate Maker** is an open source frontend tool developed by [Abolis Biotechnologies](http://abolis.fr) to 
-simulate and visualize a microplate, an assay plate with multiple wells used as small test tubes in biology. **Plate Maker** is 
+simulate and visualize a [microplate](https://en.wikipedia.org/wiki/Microplate), an assay plate with multiple wells used as small test tubes in biology. **Plate Maker** is 
 flexible and easy to use library, that can be quickly implemented in Angular* projects.
 
 This tool was generated with [Angular CLI](https://github.com/angular/angular-cli) v7.2.2 and tested with _Node_ v9.11.2 and 

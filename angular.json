@@ -23,15 +23,15 @@
               "projects/app/src/assets"
             ],
             "styles": [
-              "node_modules/bootstrap/scss/bootstrap.scss",
-              "node_modules/mdbootstrap/scss/mdb.scss",
+              "node_modules/mdbootstrap/css/bootstrap.min.css",
+              "node_modules/mdbootstrap/scss/mdb-free.scss",
               "projects/app/src/styles.scss"
             ],
             "scripts": [
-              "node_modules/mdbootstrap/js/jquery-3.4.1.min.js",
+              "node_modules/mdbootstrap/js/jquery.min.js",
               "node_modules/mdbootstrap/js/popper.min.js",
-              "node_modules/mdbootstrap/js/bootstrap.js",
-              "node_modules/mdbootstrap/js/mdb.js"
+              "node_modules/mdbootstrap/js/bootstrap.min.js",
+              "node_modules/mdbootstrap/js/mdb.min.js"
             ]
           },
           "configurations": {

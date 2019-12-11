@@ -1,0 +1,47 @@
+FROM node:10.17 as builder
+
+WORKDIR /home/node/plate-maker
+
+# try to make good use of docker cache: don't copy our source files until after install
+# because there is no need to bust the "npm install" cache layer if only our source files have changed
+COPY docker/rm.optional.deps.js ./docker/rm.optional.deps.js
+COPY package.json angular.json tsconfig.json tslint.json ./
+
+# before switching to non-root user, change ownership of home
+RUN chown -R node:node .
+USER node
+
+# NB: this is a workaround due to the fact that npm '--no-optional' flag doesn't work (open script below for more)
+RUN node docker/rm.optional.deps.js
+
+RUN npm install --no-optional
+
+COPY docker/package_lib.sh docker/depend_on_tar.sh ./
+COPY projects ./projects/
+# need to copy cypress/ because the specs are included package as well
+COPY cypress ./cypress
+
+# We want to achieve the following (in CI):
+#   1. build the lib into a tar package
+#   2. build the app with this very same package (and **not** the lib sources !)
+#   3. run all tests
+#   4. if all went well, publish that lib package with confidence
+
+ARG CI_JOB_ID
+ARG CI_COMMIT_MESSAGE
+RUN ./package_lib.sh \
+ && rm -r dist/plate-maker \
+ && ./depend_on_tar.sh
+
+# need to 'npm install' again so that our lib package gets installed from the .tar archive we just built
+RUN npm install
+RUN npm run build.app.prod
+
+FROM nginx:1.17.6
+COPY docker/set_nginx_conf.sh set_nginx_conf.sh
+RUN chmod +x set_nginx_conf.sh
+COPY docker/upload_lib.sh ./
+COPY docker/nginx.conf.template /etc/nginx/conf.d/default.conf
+COPY --from=builder /home/node/plate-maker/dist /data/www/dist
+
+CMD ./set_nginx_conf.sh && exec nginx -g 'daemon off;'

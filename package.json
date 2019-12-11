@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "serve.dev": "ng serve --disable-host-check",
-    "serve.prod": "ng serve --prod --disable-host-check",
+    "build.app.prod": "ng build app --prod",
     "build.lib": "ng build @abolis/plate-maker",
     "watch.lib": "ng build @abolis/plate-maker --watch",
     "cypress.live": "cypress open",
@@ -48,6 +48,7 @@
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
     "jasmine-core": "~2.99.1",
-    "jasmine-spec-reporter": "~4.2.1"
+    "jasmine-spec-reporter": "~4.2.1",
+    "webpack": "^4.41.2"
   }
 }

@@ -35,6 +35,7 @@ lightweight, fast, configurable and reactive Drag-To-Select (DTS) component for 
 - [API (for Developers)](#api-for-developers)
     - [Customizing Styles](#customizing-styles)
     - [Main Features](#main-features)
+- [Private Release](#private-release)
 - [Versioning](#versioning)
 - [Licence](#licence)
 
@@ -216,6 +217,19 @@ Well content is represented by a `ContentInterface` with 3 following properties:
 | type          | string   | represents content type                 |
 | value         | string   | indicates the content value             |
 | textColor     | string   | contains the color of displayed content |
+
+# Private Release
+
+> Note that this release is only for Abolis usage. In the future, this library will be hosted on Github and released into NPM.
+
+Each gitlab CI pipeline pushes a tar package (only if all its tests passed, obviously) that can be used in other projects. Therefore, in order to declare this lib in another project's `package.json`, just look for the url printed in the `package-upload` job logs of your latest successful pipeline.
+
+## Private Official Release
+
+- Bump up the version `minor`, and possibly `major` (https://semver.org/), in [package.json]
+- Git commit with a message exactly matching `Release YYYY.X.Z`
+- Git push
+- Wait for the `package-upload` CI job to complete \o/
 
 # Versioning
 

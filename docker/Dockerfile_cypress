@@ -1,0 +1,21 @@
+FROM cypress/base:12.13.0
+
+WORKDIR /home/node/plate-maker
+
+COPY package.json ./
+COPY cypress/tsconfig.json ./cypress/
+COPY cypress/plugins ./cypress/plugins/
+
+COPY docker/single.out.cypress.deps.js ./
+RUN node single.out.cypress.deps.js
+
+# before switching to non-root user, change ownership of working dir
+RUN chown -R node:node .
+USER node
+
+RUN npm install
+RUN $(npm bin)/cypress verify
+
+COPY cypress.json ./
+COPY cypress/integration ./cypress/integration/
+COPY cypress/support ./cypress/support/

@@ -1,0 +1,10 @@
+version: '3'
+services:
+
+  app:
+    image: docker.abolis.loc/aws/plate-maker:${APP_TAG}
+    container_name:plate-maker
+    ports:
+      - ${APP_PORT}:80
+    volumes:
+      - /etc/localtime:/etc/localtime:ro

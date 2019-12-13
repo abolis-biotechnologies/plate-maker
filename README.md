@@ -212,11 +212,11 @@ Well is represented by `WellInterface` with 4 following properties:
 
 Well content is represented by a `ContentInterface` with 3 following properties:
 
-| **Property**  | **Type** | **Description**                         |
-|---------------|----------|-----------------------------------------|
-| type          | string   | represents content type                 |
-| value         | string   | indicates the content value             |
-| textColor     | string   | contains the color of displayed content |
+| **Property**  | **Type** | **Description**                                                 |
+|---------------|----------|-----------------------------------------------------------------|
+| type          | string   | represents content type                                         |
+| value         | string   | indicates the content value                                     |
+| mdb_classes   | string   | contains MDBootstrap classes to customize the displayed content |
 
 # Private Release
 
@@ -226,7 +226,7 @@ Each gitlab CI pipeline pushes a tar package (only if all its tests passed, obvi
 
 ## Private Official Release
 
-- Bump up the version `minor`, and possibly `major` (https://semver.org/), in [package.json]
+- Bump up the version `minor`, and possibly `major` (https://semver.org/), in [package.json] of the app and the library
 - Git commit with a message exactly matching `Release YYYY.X.Z`
 - Git push
 - Wait for the `package-upload` CI job to complete \o/

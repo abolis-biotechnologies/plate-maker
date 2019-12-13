@@ -8,7 +8,7 @@ export interface WellInterface {
 export interface ContentInterface {
   type: string;
   value: string;
-  textColor: string;
+  mdb_classes: string;
 }
 
 export enum KEY_CODE {

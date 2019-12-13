@@ -71,7 +71,7 @@ export class Well implements WellInterface {
 export class Content implements ContentInterface {
   constructor(public type: string,
               public value: string,
-              public textColor: string) {
+              public mdb_classes: string) {
   }
 }
 

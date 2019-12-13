@@ -71,7 +71,7 @@ export class DisplayPlateAppComponent implements OnDestroy {
     this.plate.forEach((row, rowIndex) => {
       row.forEach((well, colIndex) => {
         const objectValue = this.selectedBarcode + colIndex.toString();
-        well.contents.push(new Content('objectType', objectValue, 'white'));
+        well.contents.push(new Content('objectType', objectValue, 'white-text'));
         const group = getGroup(this.groups, objectValue);
         well.bgColor = group.color;
         well.row = rowIndex;

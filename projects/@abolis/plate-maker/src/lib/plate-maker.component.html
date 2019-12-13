@@ -18,7 +18,7 @@
          hide-delay="0">
       <div class="headers col-index" *ngIf="i === 0">{{j + 1}}</div>
       <div *ngFor="let content of col.contents"
-           [style.color]="content.textColor"
+           [ngClass]="content.mdb_classes"
            [style.font-size]="wells[0].length > 6  ? '12px' : '16px'">
         {{content.value | truncate : 10}}
       </div>

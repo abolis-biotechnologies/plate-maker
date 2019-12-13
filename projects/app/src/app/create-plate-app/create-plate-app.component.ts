@@ -25,11 +25,11 @@ export class CreatePlateAppComponent implements OnDestroy {
     this.plate = createEmptyPlate(this.dimensions['96']);
     this.subscriptions.push(
       this.objectControl.valueChanges.subscribe(
-        () => this.fillSelectedWells('Main Object', this.objectControl, 'white', true),
+        () => this.fillSelectedWells('Main Object', this.objectControl, 'white-text', true),
         err => console.log(err)
       ),
       this.otherObjectControl.valueChanges.subscribe(
-        () => this.fillSelectedWells('Other Object', this.otherObjectControl, 'black'),
+        () => this.fillSelectedWells('Other Object', this.otherObjectControl, 'black-text'),
         err => console.log(err)
       )
     );
@@ -45,9 +45,9 @@ export class CreatePlateAppComponent implements OnDestroy {
     this.otherObjectControl.patchValue('', {emitEvent: false});
   }
 
-  fillSelectedWells(type: string, obj: FormControl, wellTextColor, colorizeWellBackground = false): void {
+  fillSelectedWells(type: string, obj: FormControl, mdb_classes, colorizeWellBackground = false): void {
     if (this.selectedWells !== undefined) {
-      const content = new Content(type, obj.value, wellTextColor);
+      const content = new Content(type, obj.value, mdb_classes);
       if (colorizeWellBackground) {
         this.colorizeWell(content);
       }

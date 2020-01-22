@@ -49,4 +49,19 @@ describe('Create Plate', () => {
     checkAllWells('', WHITE_COLOR);
   });
 
+  it('should not clear wells contents when keyboard event target is not "body"', () => {
+    const dimension = new Dimension(96);
+    const index = 1;
+    checkWellsByColumn(index, '', WHITE_COLOR);
+    selectWellsByColumn(index, dimension);
+    cy.get('#field-object').select('Three');
+    checkWellsByColumn(index, 'Three', TURQOISE_COLOR);
+    cy.get('#barcode').type('barcode{backspace}');
+    cy.get('#barcode').should('have.value', 'barcod');
+    checkWellsByColumn(index, 'Three', TURQOISE_COLOR);
+    selectWellsByColumn(index, dimension);
+    cy.get('body').type('{del}');
+    checkWellsByColumn(index, '', WHITE_COLOR);
+  });
+
 });

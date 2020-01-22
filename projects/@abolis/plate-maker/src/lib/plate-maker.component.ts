@@ -16,7 +16,7 @@ export class PlateMakerComponent {
   @Output() deleted: EventEmitter<WellInterface[]> = new EventEmitter();
 
   @HostListener('window:keyup', ['$event']) keyEvent(event: KeyboardEvent) {
-    if (event.code === KEY_CODE.Delete || event.code === KEY_CODE.Backspace) {
+    if ((event.target as HTMLElement).tagName === 'BODY' && (event.code === KEY_CODE.Delete || event.code === KEY_CODE.Backspace)) {
       this.deleted.emit(this.selectedWells);
     }
   }

@@ -12,6 +12,7 @@ export class PlateMakerComponent {
   selectedWells: WellInterface[];
   @Input() wells: WellInterface[][];
   @Input() disableSelection = false;
+  @Input() truncateLimit = 10;
   @Output() selected: EventEmitter<WellInterface[]> = new EventEmitter();
   @Output() deleted: EventEmitter<WellInterface[]> = new EventEmitter();
 

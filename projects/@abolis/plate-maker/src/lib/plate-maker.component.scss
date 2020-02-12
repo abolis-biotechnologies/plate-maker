@@ -24,7 +24,6 @@
   justify-content: center;
   border: 2px solid #dddddd;
   font-weight: bold;
-  @include prefix(text-shadow, '-2px 1px 10px rgba(0, 0, 0, 0.62)');
 }
 
 .headers {

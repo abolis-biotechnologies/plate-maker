@@ -1,9 +1,9 @@
 # Introduction
 
-![Version](https://img.shields.io/badge/Version-1.0.0-ff69b4.svg?style=for-the-badge)
-![Technology-1](https://img.shields.io/badge/Angular-8.3.18-red.svg?style=for-the-badge&logo=angular)
-![Technology-2](https://img.shields.io/badge/MDBootstrap-4.9.0-blueviolet.svg?style=for-the-badge)
-![Technology-3](https://img.shields.io/badge/Node-10.17-brightgreen.svg?style=for-the-badge&logo=node.js)
+![Version](https://img.shields.io/badge/Version-1.4.0-ff69b4.svg?style=for-the-badge)
+![Technology-1](https://img.shields.io/badge/Angular-9.0.2-red.svg?style=for-the-badge&logo=angular)
+![Technology-2](https://img.shields.io/badge/MDBootstrap-4.10.0-blueviolet.svg?style=for-the-badge)
+![Technology-3](https://img.shields.io/badge/Node-10.16.0-brightgreen.svg?style=for-the-badge&logo=node.js)
 ![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)
 
 [comment]: <> ( todo: add dependencies and devDependencies badges)
@@ -14,8 +14,8 @@
 simulate and visualize a [microplate](https://en.wikipedia.org/wiki/Microplate), an assay plate with multiple wells used as small test tubes in biology. **Plate Maker** is 
 flexible and easy to use library, that can be quickly implemented in Angular* projects.
 
-This tool was generated with [Angular CLI](https://github.com/angular/angular-cli) v8.3.18 and tested with _Node_ v10.17 and 
-_NPM_ v6.13.1. **Plate Maker** depends on [ngx-drag-to-select](https://www.npmjs.com/package/ngx-drag-to-select) package: 
+This tool was generated with [Angular CLI](https://github.com/angular/angular-cli) v9.0.2 and tested with _Node_ v10.16.0 and 
+_NPM_ v6.13.6. **Plate Maker** depends on [ngx-drag-to-select](https://www.npmjs.com/package/ngx-drag-to-select) package: 
 lightweight, fast, configurable and reactive Drag-To-Select (DTS) component for Angular 6 and beyond.
 
 > *If you are new to Angular, please visit the [Getting Started Angular Tutorial](https://angular.io/start).
@@ -190,7 +190,7 @@ to be selectable in this component. This component is provided by the `ngx-drag-
 | [disabled]        | changes an editable plate to read-only |
 | (selectionEnded)  | triggered when wells are selected      |
 
-On the other hand, our **Plate Maker** component is designed to have one property, one hostListener, two inputs and two outputs:
+On the other hand, our **Plate Maker** component is designed to have one property, one hostListener, three inputs and two outputs:
 
 |**I/O/Prop./Listener**| **Type**     | **Description**                                                                                      |
 |----------------------|--------------|------------------------------------------------------------------------------------------------------|
@@ -198,6 +198,7 @@ On the other hand, our **Plate Maker** component is designed to have one propert
 | keyup                | hostListener | listens to the keyup event (using keyboard _Backspace_ and _Delete_ keys to clear selected wells)    |                                                                                     |
 | wells                | input        | 2D array, gets plate wells sent by the app (e.g., an assay plate with empty wells at initialization) |                                                                       |
 | disableSelection     | input        | boolean, signals if an assay plate is read-only (in visualization mode)                              |
+| truncateLimit        | input        | number, defines the limit of a well content. By default = 9 characters                               |
 | selected             | output       | emitted when well(s) is(are) selected for updating (filled)                                          |
 | deleted              | output       | emitted when well(s) is(are) selected for deleting objects from it                                   |
 

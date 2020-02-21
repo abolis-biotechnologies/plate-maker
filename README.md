@@ -1,4 +1,4 @@
-# Introduction
+![alt text](./projects/app/src/assets/png/plate_maker_dark.png "Plate Maker")
 
 ![Version](https://img.shields.io/badge/Version-1.4.0-ff69b4.svg?style=for-the-badge)
 ![Technology-1](https://img.shields.io/badge/Angular-9.0.2-red.svg?style=for-the-badge&logo=angular)
@@ -8,7 +8,7 @@
 
 [comment]: <> ( todo: add dependencies and devDependencies badges)
 
-![alt text](./projects/app/src/assets/png/plate_maker_dark.png "Plate Maker")
+# Introduction
 
 **Plate Maker** is an open source frontend tool developed by [Abolis Biotechnologies](http://abolis.fr) to 
 simulate and visualize a [microplate](https://en.wikipedia.org/wiki/Microplate), an assay plate with multiple wells used as small test tubes in biology. **Plate Maker** is 
@@ -190,11 +190,12 @@ to be selectable in this component. This component is provided by the `ngx-drag-
 | [disabled]        | changes an editable plate to read-only |
 | (selectionEnded)  | triggered when wells are selected      |
 
-On the other hand, our **Plate Maker** component is designed to have one property, one hostListener, three inputs and two outputs:
+On the other hand, our **Plate Maker** component is designed to have two properties, one hostListener, three inputs and two outputs:
 
 |**I/O/Prop./Listener**| **Type**     | **Description**                                                                                      |
 |----------------------|--------------|------------------------------------------------------------------------------------------------------|
 | selectedWells        | property     | 2D array, represents the selected wells when the [(selectedWells)] of the DTS component is fired     |
+| contentsDetails      | property     | array of strings, represents the well contents that will be displayed when clicking a well           |
 | keyup                | hostListener | listens to the keyup event (using keyboard _Backspace_ and _Delete_ keys to clear selected wells)    |                                                                                     |
 | wells                | input        | 2D array, gets plate wells sent by the app (e.g., an assay plate with empty wells at initialization) |                                                                       |
 | disableSelection     | input        | boolean, signals if an assay plate is read-only (in visualization mode)                              |

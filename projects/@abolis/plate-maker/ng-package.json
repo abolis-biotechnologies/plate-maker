@@ -4,8 +4,9 @@
   "lib": {
     "entryFile": "src/public_api.ts",
     "umdModuleIds": {
-      "ng2-tooltip-directive": "ng2-tooltip-directive",
-      "ngx-drag-to-select": "ngx-drag-to-select"
+      "ngx-drag-to-select": "ngx-drag-to-select",
+      "ngx-popper": "ngx-popper",
+      "angular-animations": "angular-animations"
     }
   }
 }

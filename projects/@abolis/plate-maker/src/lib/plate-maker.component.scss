@@ -6,6 +6,7 @@
 
 .plate-container {
   @include prefix(border-radius, '5px');
+  z-index: 100;
 }
 
 .plate-row {
@@ -41,4 +42,20 @@
   &.col-index {
     top: 15px;
   }
+}
+
+.content-details-box {
+  position: fixed;
+  right: 1em;
+  bottom: 5em;
+  min-width: 500px;
+  color: #fff;
+  z-index: 999;
+  background-color: #333;
+  padding: 16px;
+}
+
+.custom-hr  {
+  background-image: linear-gradient(90deg, grey, transparent);
+  height: 1px;
 }

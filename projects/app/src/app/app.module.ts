@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { DragToSelectModule } from 'ngx-drag-to-select';
+import { NgxPopperModule } from 'ngx-popper';
 
 import { PlateMakerModule } from '@abolis/plate-maker';
 
@@ -20,6 +21,7 @@ import { DisplayPlateAppComponent } from './display-plate-app/display-plate-app.
     HttpClientModule,
     ReactiveFormsModule,
     DragToSelectModule.forRoot(),
+    NgxPopperModule.forRoot(),
     PlateMakerModule,
     AppRoutingModule,
   ],

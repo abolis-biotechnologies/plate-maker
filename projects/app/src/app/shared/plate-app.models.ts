@@ -1,4 +1,4 @@
-import { WellInterface , ContentInterface} from '@abolis/plate-maker';
+import { WellInterface, ContentInterface } from '@abolis/plate-maker';
 
 export const COLORS = [
   '#1abc9c',
@@ -63,8 +63,7 @@ export class Well implements WellInterface {
   constructor(public row: number,
               public column: number,
               public bgColor: string,
-              public contents: ContentInterface[] = [],
-              public otherContents: ContentInterface[] = []) {
+              public contents: ContentInterface[] = []) {
   }
 }
 

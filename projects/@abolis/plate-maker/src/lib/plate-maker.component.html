@@ -6,18 +6,18 @@
                       *ngIf="wells.length">
   <div class="plate-row justify-content-center" *ngFor="let row of wells; let i = index">
     <div class="headers row-index">{{coordToStr(i)}}</div>
-    <!-- tooltip, placement, show and hide delay is part of ng2-tooltip-directive (https://www.npmjs.com/package/ng2-tooltip-directive)-->
     <div class="plate-col"
-         *ngFor="let col of row; let j = index"
-         [dtsSelectItem]="col"
-         [style.background]="col.bgColor"
+         *ngFor="let well of row; let j = index"
+         [dtsSelectItem]="well"
+         [style.background]="well.bgColor"
          [style.cursor]="disableSelection ? 'not-allowed' : 'pointer'"
-         [tooltip]="stringifyContents(col.contents)"
-         placement="top"
-         show-delay="500"
-         hide-delay="0">
+         (click)="showContentsDetails(well.contents)"
+         [popper]="stringifyContents(well.contents).join('<br>')"
+         [popperTrigger]="'hover'"
+         [popperDelay]="1000"
+         [popperStyles]="{'background-color': '#333', color: 'white'}">
       <div class="headers col-index" *ngIf="i === 0">{{j + 1}}</div>
-      <div *ngFor="let content of col.contents"
+      <div *ngFor="let content of well.contents"
            [ngClass]="content.mdb_classes"
            [style.font-size]="wells[0].length > 6  ? '12px' : '14px'">
         {{content.value | truncate : truncateLimit}}
@@ -25,3 +25,23 @@
     </div>
   </div>
 </dts-select-container>
+
+<div class="content-details-box"
+     *ngIf="contentsDetails && contentsDetails[0] !== 'Well is empty'"
+     [@bounceInRightOnEnter]
+     [@bounceOutRightOnLeave]>
+  <div class="row">
+    <div class="col-11">
+      <div class="font-weight-bold">Well Contents</div>
+    </div>
+    <div class="col">
+      <button class="btn btn-sm p-0 m-0 z-depth-0" (click)="contentsDetails = undefined">&#10005;</button>
+    </div>
+  </div>
+  <hr class="custom-hr my-1">
+  <div class="row">
+    <div class="col">
+      <div class="grey-text" *ngFor="let content of contentsDetails" [innerHTML]="content"></div>
+    </div>
+  </div>
+</div>

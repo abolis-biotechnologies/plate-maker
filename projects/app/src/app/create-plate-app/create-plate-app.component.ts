@@ -14,8 +14,8 @@ export class CreatePlateAppComponent implements OnDestroy {
   dimensions = {24: {rows: 4, cols: 6}, 96: {rows: 8, cols: 12}};
   groups: Group[] = [];
   selectedWells: Well[];
-  objectControl: FormControl = new FormControl();
-  otherObjectControl: FormControl = new FormControl();
+  objectControl: FormControl = new FormControl({value: '', disabled: true});
+  otherObjectControl: FormControl = new FormControl({value: '', disabled: true});
   objectValues = ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve'];
   otherObjectValues = ['Alpha', 'Beta', 'Gamma', 'Delta'];
   printed = false;
@@ -39,10 +39,27 @@ export class CreatePlateAppComponent implements OnDestroy {
     this.subscriptions.forEach(s => s.unsubscribe());
   }
 
-  selected(event: Well[]): void {
-    this.selectedWells = event;
-    this.objectControl.patchValue('', {emitEvent: false});
-    this.otherObjectControl.patchValue('', {emitEvent: false});
+  selected(wells: Well[]): void {
+    this.selectedWells = wells;
+    if (this.selectedWells && this.selectedWells.length) {
+      this.objectControl.enable({emitEvent: false});
+      this.otherObjectControl.enable({emitEvent: false});
+    } else {
+      this.objectControl.disable({emitEvent: false});
+      this.otherObjectControl.disable({emitEvent: false});
+    }
+    if (this.selectedWellsHaveSame(this.selectedWells)) {
+      this.objectControl.patchValue(this.selectedWells[0]?.contents[0]?.value, {emitEvent: false});
+      // contents[0] === otherObject when it is the only control defined, otherwise contents[0] === mainObject, contents[1] = otherObject
+      if (this.selectedWells[0]?.contents.length > 1) {
+        this.otherObjectControl.patchValue(this.selectedWells[0]?.contents[1]?.value, {emitEvent: false});
+      } else {
+        this.otherObjectControl.patchValue(this.selectedWells[0]?.contents[0]?.value, {emitEvent: false});
+      }
+    } else {
+      this.objectControl.reset();
+      this.otherObjectControl.reset();
+    }
   }
 
   fillSelectedWells(type: string, obj: FormControl, mdb_classes, colorizeWellBackground = false): void {
@@ -80,6 +97,10 @@ export class CreatePlateAppComponent implements OnDestroy {
       selectedWell.contents = [];
       selectedWell.bgColor = '#ffffff';
     });
+  }
+
+  selectedWellsHaveSame(wells: Well[]) {
+    return new Set(wells.map(w => w.contents.map(c => c.value).join())).size < 2;
   }
 
 }

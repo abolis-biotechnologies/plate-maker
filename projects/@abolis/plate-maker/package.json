@@ -1,6 +1,6 @@
 {
   "name": "@abolis/plate-maker",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "peerDependencies": {
     "@angular/common": "^8.2.13",
     "@angular/core": "^8.2.13",

@@ -1,6 +1,6 @@
 ![alt text](./projects/app/src/assets/png/plate_maker_dark.png "Plate Maker")
 
-![Version](https://img.shields.io/badge/Version-2.0.0-ff69b4.svg?style=for-the-badge)
+![Version](https://img.shields.io/badge/Version-2.0.1-ff69b4.svg?style=for-the-badge)
 ![Technology-1](https://img.shields.io/badge/Angular-9.0.2-red.svg?style=for-the-badge&logo=angular)
 ![Technology-2](https://img.shields.io/badge/MDBootstrap-4.10.0-blueviolet.svg?style=for-the-badge)
 ![Technology-3](https://img.shields.io/badge/Node-10.16.0-brightgreen.svg?style=for-the-badge&logo=node.js)

@@ -57,8 +57,8 @@ export class CreatePlateAppComponent implements OnDestroy {
         this.otherObjectControl.patchValue(this.selectedWells[0]?.contents[0]?.value, {emitEvent: false});
       }
     } else {
-      this.objectControl.reset();
-      this.otherObjectControl.reset();
+      this.objectControl.reset('', {emitEvent: false});
+      this.otherObjectControl.reset('', {emitEvent: false});
     }
   }
 

@@ -6,7 +6,9 @@ import {
   Input,
   IterableDiffer,
   IterableDiffers,
+  OnChanges,
   Output,
+  SimpleChanges,
 } from '@angular/core';
 
 import { bounceInRightOnEnterAnimation, bounceOutRightOnLeaveAnimation } from 'angular-animations';
@@ -19,14 +21,14 @@ import { ContentInterface, KEY_CODE, WellInterface } from './plate-maker.models'
   styleUrls: ['./plate-maker.component.scss'],
   animations: [bounceInRightOnEnterAnimation(), bounceOutRightOnLeaveAnimation()]
 })
-export class PlateMakerComponent implements DoCheck {
+export class PlateMakerComponent implements DoCheck, OnChanges {
 
   selectedWells: WellInterface[];
   contentsDetails: string[];
+  truncateLimit: number;
   iterableDiffer: IterableDiffer<any>;
   @Input() wells: WellInterface[][];
   @Input() disableSelection = false;
-  @Input() truncateLimit = 9;
   @Output() selected: EventEmitter<WellInterface[]> = new EventEmitter();
   @Output() deleted: EventEmitter<WellInterface[]> = new EventEmitter();
 
@@ -38,6 +40,12 @@ export class PlateMakerComponent implements DoCheck {
 
   constructor(private _iterableDiffers: IterableDiffers) {
     this.iterableDiffer = this._iterableDiffers.find([]).create(null);
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['wells']) {
+      this.truncateLimit = this.computeTruncateLimit(this.wells.length);
+    }
   }
 
   ngDoCheck(): void {
@@ -67,4 +75,9 @@ export class PlateMakerComponent implements DoCheck {
     }
     return ['Well is empty'];
   }
+
+  computeTruncateLimit(plateDimensionRows: number): number {
+    return plateDimensionRows <= 6 ? 15 : 9;
+  }
+
 }

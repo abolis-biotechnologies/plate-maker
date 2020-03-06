@@ -1,12 +1,11 @@
 ![alt text](./projects/app/src/assets/png/plate_maker_dark.png "Plate Maker")
 
-![Version](https://img.shields.io/badge/Version-2.0.1-ff69b4.svg?style=for-the-badge)
+![Version](https://img.shields.io/badge/Version-1.0.0-ff69b4.svg?style=for-the-badge)
+[![Build](https://img.shields.io/travis/com/abolis-biotechnologies/plate-maker/master.svg?style=for-the-badge&logo=travis)](https://travis-ci.com/abolis-biotechnologies/plate-maker)
 ![Technology-1](https://img.shields.io/badge/Angular-9.0.2-red.svg?style=for-the-badge&logo=angular)
 ![Technology-2](https://img.shields.io/badge/MDBootstrap-4.10.0-blueviolet.svg?style=for-the-badge)
-![Technology-3](https://img.shields.io/badge/Node-10.16.0-brightgreen.svg?style=for-the-badge&logo=node.js)
+![Technology-3](https://img.shields.io/badge/Node-10.16.0-darkgreen.svg?style=for-the-badge&logo=node.js)
 ![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)
-
-[comment]: <> ( todo: add dependencies and devDependencies badges)
 
 # Introduction
 
@@ -32,19 +31,19 @@ lightweight, fast, configurable and reactive Drag-To-Select (DTS) component for 
     - [Usage Example](#usage-example)
         - [Simulating an Assay Plate](#simulating-an-assay-plate) 
         - [Visualising an Assay Plate](#visualising-an-assay-plate)
-- [API (for Developers)](#api-for-developers)
+- [API](#api)
     - [Customizing Styles](#customizing-styles)
     - [Main Features](#main-features)
-- [Private Release](#private-release)
+- [Development Github Release](#development-github-release-for-maintainers)
 - [Versioning](#versioning)
 - [Licence](#licence)
 
 # Main Features and Demonstration
 
-- Create and visualise assay plates with up to 96 wells  
-- Select wells on the assay plate simply by dragging (Drag to select)* 
-- Fill selected wells with objects from the `Configuration` menu 
-- Wells with the same content are grouped by color for easy visualisation 
+- Create and visualise assay plates with up to 96 wells
+- Select wells on the assay plate simply by dragging (Drag to select)*
+- Fill selected wells with objects from the `Configuration` menu
+- Wells with the same content are grouped by color for easy visualisation
 - Read-only assay plates in the visualization mode
 
 > ***Drag To Select** is the process of clicking on a portion of the screen, holding down the mouse button, and dragging the cursor to another location. 
@@ -97,7 +96,7 @@ The standard way to install and to run this library is to use _NPM_*.
 ```bash
   npm install           # if this is your first time here
   npm run build.lib     # Build the main library
-  npm run serve.prod    # Run the app in production mode
+  npm run serve.dev     # Run the app in development mode
 ```
 
 For more build tasks, please see `package.json`.
@@ -115,10 +114,12 @@ All configurations and dependencies can be found in `angular.json` and `package.
 
 # Adding Plate Maker to Your Application
 
+[comment]: <> (todo: chane link version to our NPM page)
+
 - Declare **Plate Maker** library dependency in your `package.json`
   
 ```bash
-  "plate-maker": "path_to_the_built_library"
+  "plate-maker": "version"
 ```
 
 - Add **Plate Maker** component in your html template, respecting its inputs and outputs. 
@@ -154,7 +155,7 @@ field do not provide this option.
 
 For more implementation details see the source code (/projects/app).
 
-# API (for Developers)
+# API
 
 In this section, you will find more specific information about integration of **Plate maker** library to an Angular project.
 
@@ -190,16 +191,16 @@ to be selectable in this component. This component is provided by the `ngx-drag-
 | [disabled]        | changes an editable plate to read-only |
 | (selectionEnded)  | triggered when wells are selected      |
 
-On the other hand, our **Plate Maker** component is designed to have two properties, one hostListener, three inputs and two outputs:
+On the other hand, our **Plate Maker** component is designed to have three properties, one hostListener, two inputs and two outputs:
 
 |**I/O/Prop./Listener**| **Type**     | **Description**                                                                                      |
 |----------------------|--------------|------------------------------------------------------------------------------------------------------|
 | selectedWells        | property     | 2D array, represents the selected wells when the [(selectedWells)] of the DTS component is fired     |
 | contentsDetails      | property     | array of strings, represents the well contents that will be displayed when clicking a well           |
+| truncateLimit        | property     | number, defines the limit of a well content                                                          |
 | keyup                | hostListener | listens to the keyup event (using keyboard _Backspace_ and _Delete_ keys to clear selected wells)    |                                                                                     |
 | wells                | input        | 2D array, gets plate wells sent by the app (e.g., an assay plate with empty wells at initialization) |                                                                       |
 | disableSelection     | input        | boolean, signals if an assay plate is read-only (in visualization mode)                              |
-| truncateLimit        | input        | number, defines the limit of a well content. By default = 9 characters                               |
 | selected             | output       | emitted when well(s) is(are) selected for updating (filled)                                          |
 | deleted              | output       | emitted when well(s) is(are) selected for deleting objects from it                                   |
 
@@ -220,18 +221,15 @@ Well content is represented by a `ContentInterface` with 3 following properties:
 | value         | string   | indicates the content value                                     |
 | mdb_classes   | string   | contains MDBootstrap classes to customize the displayed content |
 
-# Private Release
+# Development Github Release (for maintainers)
 
-> Note that this release is only for Abolis usage. In the future, this library will be hosted on Github and released into NPM.
+Each Travis CI pipeline pushes a tar package (only if all its tests passed, obviously) that can be used in other projects at development stage. Therefore, in order to declare this lib in another project's `package.json`, just look for the url of the library in the [github releases](https://github.com/abolis-biotechnologies/plate-maker/releases).
 
-Each gitlab CI pipeline pushes a tar package (only if all its tests passed, obviously) that can be used in other projects. Therefore, in order to declare this lib in another project's `package.json`, just look for the url printed in the `package-upload` job logs of your latest successful pipeline.
-
-## Private Official Release
+## Development Github Official Release
 
 - Bump up the version `minor`, and possibly `major` (https://semver.org/), in [package.json] of the app and the library
 - Git commit with a message exactly matching `Release YYYY.X.Z`
-- Git push
-- Wait for the `package-upload` CI job to complete \o/
+- Git push and wait for the job to succeed \o/
 
 # Versioning
 

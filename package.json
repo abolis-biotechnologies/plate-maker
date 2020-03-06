@@ -1,6 +1,6 @@
 {
   "name": "plate-maker",
-  "version": "2.0.1",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "serve.dev": "ng serve -o --disable-host-check",
@@ -8,7 +8,10 @@
     "build.lib": "ng build @abolis/plate-maker",
     "watch.lib": "ng build @abolis/plate-maker --watch",
     "cypress.live": "cypress open",
-    "cypress.ci": "cypress run"
+    "cypress.ci": "cypress run",
+    "cypress.verify": "cypress verify",
+    "start.server.ci": "angular-http-server --silent --path ./dist/app -p 4200",
+    "start.server.and.test": "start-server-and-test start.server.ci http://localhost:4200 cypress.ci"
   },
   "private": true,
   "dependencies": {
@@ -37,8 +40,10 @@
     "@angular/compiler-cli": "^9.0.1",
     "@angular/language-service": "^9.0.1",
     "@types/node": "^13.7.1",
+    "angular-http-server": "^1.9.0",
     "codelyzer": "^5.2.1",
     "ng-packagr": "^9.0.0",
+    "start-server-and-test": "^1.10.9",
     "ts-node": "~8.6.2",
     "tslint": "~6.0.0",
     "typescript": "~3.7.5"

@@ -1,0 +1,44 @@
+os: linux
+
+language: node_js
+
+node_js:
+  - '10.17'
+
+cache:
+  directories:
+    - ~/.npm
+    - ./node_modules
+    - ~/.cache
+
+install:
+  - npm ci # Install a project with a clean slate, similar to npm install (see https://docs.npmjs.com/cli/ci.html)
+
+# We want to achieve the following (in CI):
+#   1. build the lib into a tar package
+#   2. build the app with this very same package (and **not** the lib sources !)
+#   3. run all tests
+#   4. if all went well, publish that lib package with confidence
+
+script:
+  - npm run build.lib
+  - source travis/travis_package_lib.sh # Execute (source) the script in the current shell environment (to be able to export variables)
+  - rm -r dist/plate-maker projects/@abolis/plate-maker # To be 100% sure we use the code of the same .tar package that we will push later
+  - ./travis/make_app_depend_on_tar.sh
+  - npm install
+  - npm run build.app.prod
+  - npm run cypress.verify
+  - npm run start.server.and.test
+
+before_deploy:
+  - source travis/travis_tag_commit.sh
+
+deploy:
+  provider: releases
+  token: $GITHUB_TOKEN
+  file: dist/$PACKAGE_TO_UPLOAD # PACKAGE_TO_UPLOAD is exported from travis_tag_commit.sh
+  skip_cleanup: true
+
+branches:
+  except:
+    - /^v[0-9]+\.[0-9]+\.[0-9]+$/ # Ensure no build is triggered on release tag pushes

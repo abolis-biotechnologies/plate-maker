@@ -1,3 +1,6 @@
+#!/bin/bash
+
+set -e # Exit immediately if a command exits with a non-zero status
 
 DIST="dist"
 # rely on the heavy assumption that there is only one .tar file here (should be ok in CI)

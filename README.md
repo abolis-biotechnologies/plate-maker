@@ -1,6 +1,6 @@
 ![alt text](./projects/app/src/assets/png/plate_maker_dark.png "Plate Maker")
 
-![Version](https://img.shields.io/badge/Version-1.0.0-ff69b4.svg?style=for-the-badge)
+![Version](https://img.shields.io/badge/Version-1.0.1-ff69b4.svg?style=for-the-badge)
 [![Build](https://img.shields.io/travis/com/abolis-biotechnologies/plate-maker/master.svg?style=for-the-badge&logo=travis)](https://travis-ci.com/abolis-biotechnologies/plate-maker)
 ![Technology-1](https://img.shields.io/badge/Angular-9.0.2-red.svg?style=for-the-badge&logo=angular)
 ![Technology-2](https://img.shields.io/badge/MDBootstrap-4.10.0-blueviolet.svg?style=for-the-badge)
@@ -35,6 +35,7 @@ lightweight, fast, configurable and reactive Drag-To-Select (DTS) component for 
     - [Customizing Styles](#customizing-styles)
     - [Main Features](#main-features)
 - [Development Github Release](#development-github-release-for-maintainers)
+- [NPM Release](#npm-release-for-maintainers)
 - [Versioning](#versioning)
 - [Licence](#licence)
 
@@ -114,12 +115,10 @@ All configurations and dependencies can be found in `angular.json` and `package.
 
 # Adding Plate Maker to Your Application
 
-[comment]: <> (todo: chane link version to our NPM page)
-
 - Declare **Plate Maker** library dependency in your `package.json`
   
 ```bash
-  "plate-maker": "version"
+  "@abolis/plate-maker": "^1.0.1"
 ```
 
 - Add **Plate Maker** component in your html template, respecting its inputs and outputs. 
@@ -228,8 +227,18 @@ Each Travis CI pipeline pushes a tar package (only if all its tests passed, obvi
 ## Development Github Official Release
 
 - Bump up the version `minor`, and possibly `major` (https://semver.org/), in [package.json] of the app and the library
+- npm install
 - Git commit with a message exactly matching `Release YYYY.X.Z`
 - Git push and wait for the job to succeed \o/
+
+# NPM Release (for maintainers)
+
+- Bump up the version `minor`, and possibly `major` (https://semver.org/), in [package.json] of the app and the library
+- npm install
+- ng build @abolis/plate-maker
+- npm login
+- cd dist/plate-maker
+- npm publish
 
 # Versioning
 

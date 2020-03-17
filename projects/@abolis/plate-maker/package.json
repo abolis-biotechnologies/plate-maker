@@ -1,6 +1,23 @@
 {
   "name": "@abolis/plate-maker",
-  "version": "1.0.0",
+  "version": "1.0.1",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abolis-biotechnologies/plate-maker"
+  },
+  "description": "Open source Front-End tool to simulate and visualize a microplate",
+  "keywords": [
+    "frontend",
+    "plate",
+    "biology"
+  ],
+  "homepage": "https://github.com/abolis-biotechnologies/plate-maker#readme",
+  "bugs": {
+    "url": "https://github.com/abolis-biotechnologies/plate-maker/issues"
+  },
   "peerDependencies": {
     "@angular/common": "^9.0.1",
     "@angular/core": "^9.0.1",

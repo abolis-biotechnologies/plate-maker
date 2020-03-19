@@ -188,6 +188,7 @@ to be selectable in this component. This component is provided by the `ngx-drag-
 |-------------------|----------------------------------------|
 | [(selectedWells)] | binds the selected wells               |
 | [disabled]        | changes an editable plate to read-only |
+| [tick]            | an optional `EventEmitter` that `plate-maker` will subscribe to, to re-compute the wells rendering on-demand only. When this input is not provided, the computation is performed in `ngDoCheck()`, which is to say an (awful) lot of times. Use this input to increase performance if needed. |
 | (selectionEnded)  | triggered when wells are selected      |
 
 On the other hand, our **Plate Maker** component is designed to have three properties, one hostListener, two inputs and two outputs:

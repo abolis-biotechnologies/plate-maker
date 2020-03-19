@@ -65,12 +65,22 @@ export class Well implements WellInterface {
               public bgColor: string,
               public contents: ContentInterface[] = []) {
   }
+
+  get listDisplay() {
+    return `(${this.row}, ${this.column}): ${this.contents.map(c => c.value).join(' | ')}`;
+  }
 }
 
 export class Content implements ContentInterface {
   constructor(public type: string,
               public value: string,
               public mdb_classes: string) {
+  }
+}
+
+export class DummyTruncateContent extends Content {
+  truncatedValue(limit: number): string {
+    return `Over-${this.value.substring(0, limit - 5)}`;
   }
 }
 

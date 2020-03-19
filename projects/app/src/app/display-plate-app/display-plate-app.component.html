@@ -3,7 +3,10 @@
     <div class="col-8">
       <div class="card">
         <div class="card-body p-0">
-          <lib-plate-maker [wells]="plate" [disableSelection]="true"></lib-plate-maker>
+          <lib-plate-maker [wells]="plate"
+                           [disableSelection]="true"
+                           [tick]="tickEmitter">
+          </lib-plate-maker>
         </div>
       </div>
     </div>
@@ -24,6 +27,19 @@
               <span class="badge badge-light z-depth-0 rounded px-0 pl-2 ml-2">
                 Count <span class="elegant-color white-text rounded ml-1 p-1">{{displayedBarcodes.length}}</span>
               </span>
+              <div>
+                <label for="override-truncate">Override truncate</label>
+                <input type="checkbox" id="override-truncate" [formControl]="truncateControl">
+              </div>
+              <div>
+                <label for="control-tick">Control tick</label>
+                <input type="checkbox" id="control-tick" [formControl]="tickControl">
+                <button [disabled]="!tickControl.value"
+                        class="btn btn-sm btn-dark"
+                        (click)="tickEmitter.emit()">
+                  Tick
+                </button>
+              </div>
             </div>
           </div>
           <div class="scrollable p-2" *ngIf="displayedBarcodes.length">

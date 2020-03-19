@@ -118,7 +118,7 @@ All configurations and dependencies can be found in `angular.json` and `package.
 - Declare **Plate Maker** library dependency in your `package.json`
   
 ```bash
-  "@abolis/plate-maker": "^1.0.1"
+  "@abolis/plate-maker": "^1.0.2"
 ```
 
 - Add **Plate Maker** component in your html template, respecting its inputs and outputs. 
@@ -235,6 +235,7 @@ Each Travis CI pipeline pushes a tar package (only if all its tests passed, obvi
 
 - Bump up the version `minor`, and possibly `major` (https://semver.org/), in [package.json] of the app and the library
 - npm install
+- Update the README of the app and the library, if necessary
 - ng build @abolis/plate-maker
 - npm login
 - cd dist/plate-maker

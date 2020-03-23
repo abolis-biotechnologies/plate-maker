@@ -35,8 +35,11 @@
           <button class="btn btn-sm btn-dark float-right" (click)="savePlate()">save</button>
         </div>
       </div>
-      <div id="printed" class="text-center font-weight-bold animated fadeIn p-3 green-text" *ngIf="printed">
-        Wells data printed into console
+      <div id="printed" class="text-center animated fadeIn p-3" *ngIf="savedWells?.length">
+        <div>Wells that could have been saved to a backend in real life</div>
+        <div *ngFor="let well of savedWells" class="saved-well">
+          {{well.listDisplay}}
+        </div>
       </div>
     </div>
   </div>

@@ -3,7 +3,10 @@
     <div class="col-8">
       <div class="card">
         <div class="card-body p-0">
-          <lib-plate-maker [wells]="plate" [disableSelection]="true"></lib-plate-maker>
+          <lib-plate-maker [wells]="plate"
+                           [disableSelection]="true"
+                           [tick]="tickEmitter">
+          </lib-plate-maker>
         </div>
       </div>
     </div>
@@ -12,7 +15,28 @@
         <div class="card-header elegant-color white-text text-center font-weight-bold">Barcode(s)</div>
         <div class="card-body">
           <div class="d-flex justify-content-between pb-2">
-            <div class="mt-1 p-0 font-weight-bold"></div>
+            <div class="p-0">
+              <div class="custom-control custom-checkbox">
+                <input type="checkbox"
+                       class="custom-control-input"
+                       id="override-truncate"
+                       [formControl]="truncateControl">
+                <label class="custom-control-label" for="override-truncate">Override truncate</label>
+              </div>
+              <div class="d-flex flex-row mt-1">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="control-tick" [formControl]="tickControl">
+                  <label class="custom-control-label" for="control-tick">Control tick</label>
+                </div>
+                <div>
+                  <button class="btn btn-sm btn-dark px-3 py-1 my-0"
+                          [disabled]="!tickControl.value"
+                          (click)="tickEmitter.emit()">
+                    tick
+                  </button>
+                </div>
+              </div>
+            </div>
             <div class="p-0">
               <div class="md-form form-sm m-0 d-inline-block">
                 <input type="text"

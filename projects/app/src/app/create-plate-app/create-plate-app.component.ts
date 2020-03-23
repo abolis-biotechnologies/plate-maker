@@ -16,9 +16,10 @@ export class CreatePlateAppComponent implements OnDestroy {
   selectedWells: Well[];
   objectControl: FormControl = new FormControl({value: '', disabled: true});
   otherObjectControl: FormControl = new FormControl({value: '', disabled: true});
-  objectValues = ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve'];
-  otherObjectValues = ['Alpha', 'Beta', 'Gamma', 'Delta'];
-  printed = false;
+  objectValues = ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve']
+    .map(txt => `Object number ${txt}`);
+  otherObjectValues = ['Alpha', 'Beta', 'Gamma', 'Delta'].map(txt => `${txt} greek letter`);
+  savedWells: Well[] = [];
   subscriptions: Subscription[] = [];
 
   constructor() {
@@ -86,9 +87,14 @@ export class CreatePlateAppComponent implements OnDestroy {
   }
 
   savePlate(): void {
-    this.printed = true;
-    console.log(this.plate);
-    setTimeout(() => this.printed = false, 3000);
+    this.savedWells = [];
+    for (const row of this.plate) {
+      for (const well of row) {
+        if (well.contents?.length) {
+          this.savedWells.push(well);
+        }
+      }
+    }
   }
 
   clearWells(wells: Well[]): void {

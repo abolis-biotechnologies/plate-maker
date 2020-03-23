@@ -1,8 +1,8 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, EventEmitter, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 
-import { Content, createEmptyPlate, getGroup, Group, Well } from '../shared/plate-app.models';
+import { Content, createEmptyPlate, DummyTruncateContent, getGroup, Group, Well } from '../shared/plate-app.models';
 
 @Component({
   selector: 'app-display-plate-app',
@@ -32,7 +32,10 @@ export class DisplayPlateAppComponent implements OnDestroy {
   displayedBarcodes: string[] = [];
   plate: Well[][] = [];
   dimensions = {24: {rows: 4, cols: 6}, 96: {rows: 8, cols: 12}};
-  filterBarcodesControl: FormControl = new FormControl();
+  filterBarcodesControl = new FormControl();
+  truncateControl = new FormControl();
+  tickControl = new FormControl();
+  tickEmitter: EventEmitter<void>;
   selectedBarcode: string;
   groups: Group[] = [];
   subscriptions = [];
@@ -44,7 +47,19 @@ export class DisplayPlateAppComponent implements OnDestroy {
       this.filterBarcodesControl.valueChanges.subscribe(
         barcode => this.filterBarcodes(barcode),
         error => console.log(error)
-      )
+      ),
+      this.truncateControl.valueChanges.subscribe(
+        () => this.updatePlate()
+      ),
+      this.tickControl.valueChanges.subscribe(
+        controlTick => {
+          if (controlTick) {
+            this.tickEmitter = new EventEmitter();
+          } else {
+            delete this.tickEmitter;
+          }
+        }
+      ),
     );
   }
 
@@ -68,10 +83,13 @@ export class DisplayPlateAppComponent implements OnDestroy {
 
   updatePlate(): void {
     this.initPlate();
+    const ContentClass = this.truncateControl.value ? DummyTruncateContent : Content;
     this.plate.forEach((row, rowIndex) => {
       row.forEach((well, colIndex) => {
         const objectValue = this.selectedBarcode + colIndex.toString();
-        well.contents.push(new Content('objectType', objectValue, 'white-text'));
+        well.contents.push(
+          new ContentClass('objectType', objectValue, 'white-text')
+        );
         const group = getGroup(this.groups, objectValue);
         well.bgColor = group.color;
         well.row = rowIndex;

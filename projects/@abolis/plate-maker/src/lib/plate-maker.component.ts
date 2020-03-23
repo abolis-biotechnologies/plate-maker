@@ -10,9 +10,11 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-
 import { bounceInRightOnEnterAnimation, bounceOutRightOnLeaveAnimation } from 'angular-animations';
 
+import { Subscription } from 'rxjs';
+
+import { CommonSubstring, truncate } from './misc/util';
 import { ContentInterface, KEY_CODE, WellInterface } from './plate-maker.models';
 
 @Component({
@@ -22,13 +24,16 @@ import { ContentInterface, KEY_CODE, WellInterface } from './plate-maker.models'
   animations: [bounceInRightOnEnterAnimation(), bounceOutRightOnLeaveAnimation()]
 })
 export class PlateMakerComponent implements DoCheck, OnChanges {
-
   selectedWells: WellInterface[];
   contentsDetails: string[];
   truncateLimit: number;
-  iterableDiffer: IterableDiffer<any>;
+  contentDetailsDiffer: IterableDiffer<ContentInterface>;      // determine when to update content details
+  commonSubstrings: Map<string, CommonSubstring> = new Map();  // map type => longest pattern substring between contents
+  tickSubscription: Subscription;
+
   @Input() wells: WellInterface[][];
   @Input() disableSelection = false;
+  @Input() tick: EventEmitter<void>;
   @Output() selected: EventEmitter<WellInterface[]> = new EventEmitter();
   @Output() deleted: EventEmitter<WellInterface[]> = new EventEmitter();
 
@@ -39,19 +44,34 @@ export class PlateMakerComponent implements DoCheck, OnChanges {
   }
 
   constructor(private _iterableDiffers: IterableDiffers) {
-    this.iterableDiffer = this._iterableDiffers.find([]).create(null);
+    this.contentDetailsDiffer = this._iterableDiffers.find([]).create(null);
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['wells']) {
       this.truncateLimit = this.computeTruncateLimit(this.wells.length);
     }
+    if (changes['tick']) {
+      if (this.tickSubscription) {
+        this.tickSubscription.unsubscribe();
+      }
+      if (this.tick) {
+        this.tickSubscription = this.tick.subscribe(
+          () => this.checkCommonSubstrings(),
+          // if there is an error, let it crash all the way
+        );
+      }
+    }
   }
 
   ngDoCheck(): void {
+    if (this.wells?.length > 0) {
+      if (!this.tick) {
+        this.checkCommonSubstrings();
+      }  // else we only run changes detection when an event is emitted by this.tick
+    }
     if (this.selectedWells && this.selectedWells.length === 1) {
-      const changes = this.iterableDiffer.diff(this.selectedWells[0].contents);
-      if (changes) {
+      if (this.contentDetailsDiffer.diff(this.selectedWells[0].contents)) {
         this.showContentsDetails(this.selectedWells[0].contents);
       }
     } else {
@@ -59,9 +79,13 @@ export class PlateMakerComponent implements DoCheck, OnChanges {
     }
   }
 
-  coordToStr = (index: number): string => `${String.fromCharCode(index + 65)}`;
+  coordToStr(index: number): string {
+    return `${String.fromCharCode(index + 65)}`;
+  }
 
-  emitSelectedWells = (): void => this.selected.emit(this.selectedWells);
+  emitSelectedWells(): void {
+    this.selected.emit(this.selectedWells);
+  }
 
   showContentsDetails(contents: ContentInterface[]) {
     this.contentsDetails = this.stringifyContents(contents);
@@ -76,8 +100,43 @@ export class PlateMakerComponent implements DoCheck, OnChanges {
     return ['Well is empty'];
   }
 
-  computeTruncateLimit(plateDimensionRows: number): number {
-    return plateDimensionRows <= 6 ? 15 : 9;
+  truncated(content: ContentInterface) {
+    if (typeof content.truncatedValue === 'function') {
+      return content.truncatedValue(this.truncateLimit);
+    } else {
+      return truncate(
+        content.value,
+        this.truncateLimit,
+        this.commonSubstrings.get(content.type)?.pattern
+      );
+    }
   }
 
+  private computeTruncateLimit(plateDimensionRows: number): number {
+    return plateDimensionRows <= 6 ? 18 : 12;
+  }
+
+  private checkCommonSubstrings() {
+    const contentsByType = new Map<string, Set<string>>();
+    this.wells.forEach(row => row.forEach(w => w.contents.forEach(content => {
+      if (!contentsByType.has(content.type)) {
+        contentsByType.set(content.type, new Set<string>());
+      }
+      contentsByType.get(content.type).add(content.value);
+    })));
+    const keysToDelete = [];
+    for (const key of this.commonSubstrings.keys()) {
+      if (!contentsByType.has(key)) {
+        keysToDelete.push(key);
+      }
+    }
+    keysToDelete.forEach(k => this.commonSubstrings.delete(k));
+    for (const entry of contentsByType.entries()) {
+      const contentType = entry[0];
+      if (!this.commonSubstrings.has(contentType)) {
+        this.commonSubstrings.set(contentType, new CommonSubstring(this._iterableDiffers));
+      }
+      this.commonSubstrings.get(contentType).update(entry[1]);
+    }
+  }
 }

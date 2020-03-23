@@ -5,12 +5,10 @@ import { DragToSelectModule } from 'ngx-drag-to-select';
 import { NgxPopperModule } from 'ngx-popper';
 
 import { PlateMakerComponent } from './plate-maker.component';
-import { TruncatePipe } from './misc/truncate.pipe';
 
 @NgModule({
   declarations: [
     PlateMakerComponent,
-    TruncatePipe
   ],
   imports: [
     CommonModule,

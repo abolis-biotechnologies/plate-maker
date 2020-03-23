@@ -14,7 +14,7 @@ import { bounceInRightOnEnterAnimation, bounceOutRightOnLeaveAnimation } from 'a
 
 import { Subscription } from 'rxjs';
 
-import { CommonSubstring, truncate } from './util';
+import { CommonSubstring, truncate } from './misc/util';
 import { ContentInterface, KEY_CODE, WellInterface } from './plate-maker.models';
 
 @Component({

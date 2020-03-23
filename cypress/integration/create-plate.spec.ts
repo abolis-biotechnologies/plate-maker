@@ -32,8 +32,8 @@ describe('Create Plate', () => {
     checkWell(1, 1, ['* number Two', 'Beta greek *'], BLUE_COLOR_2);
     cy.get('button').contains('save').click();
     cy.get('.saved-well').should('have.length', 2);
-    cy.get('.saved-well').eq(0).should('have.text', ' ((1, 1): Object number Two | Beta greek letter ');
-    cy.get('.saved-well').eq(1).should('have.text', ' ((2, 3): Object number Seven | Alpha greek letter ');
+    cy.get('.saved-well').eq(0).should('have.text', ' (1, 1): Object number Two | Beta greek letter ');
+    cy.get('.saved-well').eq(1).should('have.text', ' (2, 3): Object number Seven | Alpha greek letter ');
   });
 
   it('should fill all wells and clear them', () => {

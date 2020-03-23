@@ -25,6 +25,7 @@
     "ngx-drag-to-select": "^3.1.1",
     "ngx-popper": "^7.0.0",
     "popper.js": "^1.16.1",
-    "angular-animations": "^0.0.10"
+    "angular-animations": "^0.0.10",
+    "string-algorithms": "^1.0.20"
   }
 }

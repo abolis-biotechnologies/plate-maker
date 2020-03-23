@@ -118,7 +118,7 @@ All configurations and dependencies can be found in `angular.json` and `package.
 - Declare **Plate Maker** library dependency in your `package.json`
   
 ```bash
-  "@abolis/plate-maker": "^1.0.1"
+  "@abolis/plate-maker": "^1.0.2"
 ```
 
 - Add **Plate Maker** component in your html template, respecting its inputs and outputs. 
@@ -188,10 +188,9 @@ to be selectable in this component. This component is provided by the `ngx-drag-
 |-------------------|----------------------------------------|
 | [(selectedWells)] | binds the selected wells               |
 | [disabled]        | changes an editable plate to read-only |
-| [tick]            | an optional `EventEmitter` that `plate-maker` will subscribe to, to re-compute the wells rendering on-demand only. When this input is not provided, the computation is performed in `ngDoCheck()`, which is to say an (awful) lot of times. Use this input to increase performance if needed. |
 | (selectionEnded)  | triggered when wells are selected      |
 
-On the other hand, our **Plate Maker** component is designed to have three properties, one hostListener, two inputs and two outputs:
+On the other hand, our **Plate Maker** component is designed to have three properties, one hostListener, three inputs and two outputs:
 
 |**I/O/Prop./Listener**| **Type**     | **Description**                                                                                      |
 |----------------------|--------------|------------------------------------------------------------------------------------------------------|
@@ -199,10 +198,11 @@ On the other hand, our **Plate Maker** component is designed to have three prope
 | contentsDetails      | property     | array of strings, represents the well contents that will be displayed when clicking a well           |
 | truncateLimit        | property     | number, defines the limit of a well content                                                          |
 | keyup                | hostListener | listens to the keyup event (using keyboard _Backspace_ and _Delete_ keys to clear selected wells)    |                                                                                     |
-| wells                | input        | 2D array, gets plate wells sent by the app (e.g., an assay plate with empty wells at initialization) |                                                                       |
-| disableSelection     | input        | boolean, signals if an assay plate is read-only (in visualization mode)                              |
-| selected             | output       | emitted when well(s) is(are) selected for updating (filled)                                          |
-| deleted              | output       | emitted when well(s) is(are) selected for deleting objects from it                                   |
+| [wells]              | input        | 2D array, gets plate wells sent by the app (e.g., an assay plate with empty wells at initialization) |                                                                       |
+| [disableSelection]   | input        | boolean, signals if an assay plate is read-only (in visualization mode)                              |
+| [tick]               | input        | an optional `EventEmitter` that `plate-maker` will subscribe to, to re-compute the wells rendering on-demand only. When this input is not provided, the computation is performed in `ngDoCheck()`, which is to say an (awful) lot of times. Use this input to increase performance if needed. |
+| (selected)           | output       | emitted when well(s) is(are) selected for updating (filled)                                          |
+| (deleted)            | output       | emitted when well(s) is(are) selected for deleting objects from it                                   |
 
 Well is represented by `WellInterface` with 4 following properties:
 

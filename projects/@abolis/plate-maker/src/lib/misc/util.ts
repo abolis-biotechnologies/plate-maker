@@ -21,8 +21,9 @@ export class CommonSubstring {
 
   get pattern() {
     if (this.commonPattern === undefined) {
-      if (this.values?.size > 1) {
-        this.commonPattern = longestCommonSubstring(Array.from(this.values))[0];
+      const values = Array.from(this.values).filter(v => v);  // remove empty strings
+      if (values?.length > 1) {
+        this.commonPattern = longestCommonSubstring(values)[0];
       }
       this.commonPattern = this.commonPattern || '';  // mark pattern as computed
     }

@@ -101,13 +101,22 @@ describe('Create Plate', () => {
     // this test checks the ability of the app to disable form controls. So the lib is not concerned in this test
     cy.get('#field-object').should('be.disabled');
     cy.get('#other-field-object').should('be.disabled');
-    selectWell(1, 1, new Dimension(24));
+    selectWell(1, 1, new Dimension(96));
     cy.get('#field-object').should('be.enabled');
     cy.get('#other-field-object').should('be.enabled');
     cy.get('body').type('{ctrl}', {release: false});
-    selectWell(1, 1, new Dimension(24));
+    selectWell(1, 1, new Dimension(96));
     cy.get('#field-object').should('be.disabled');
     cy.get('#other-field-object').should('be.disabled');
+  });
+
+  it('should support empty strings as a well contents', () => {
+    selectWell(3, 3, new Dimension(96));
+    cy.get('#other-field-object').select('');
+    selectWell(3, 4, new Dimension(96));
+    selectOtherObject('Alpha');
+    checkWell(3, 3, '', WHITE_COLOR);
+    checkWell(3, 4, 'Alpha gree..', WHITE_COLOR);
   });
 
 });

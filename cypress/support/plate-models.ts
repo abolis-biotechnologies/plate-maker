@@ -75,7 +75,7 @@ export function checkWell(row: number, col: number, content: string | string[], 
 }
 
 export function checkAllWells(content: string | string[], bgColor?: string) {
-  cy.get('.plate-col').then((well: JQuery<HTMLElement>) => checkWellContent(well, content, bgColor));
+  cy.get('.plate-col').then((well: JQuery) => checkWellContent(well, content, bgColor));
 }
 
 export function mustBeReadonlyPlate() {
@@ -111,7 +111,7 @@ function checkColumn(col: number, content: string, shape: number[], bgColor?: st
   }
 }
 
-function checkWellContent(well: JQuery<HTMLElement>, content: string | string[], bgColor?: string) {
+function checkWellContent(well: JQuery, content: string | string[], bgColor?: string) {
   if (content instanceof Array) {
     content.forEach(c => expect(well).to.contain(c));
   } else {

@@ -34,6 +34,7 @@ before_deploy:
   - source travis/travis_tag_commit.sh
 
 deploy:
+  all_branches: true
   provider: releases
   token: $GITHUB_TOKEN
   file: dist/$PACKAGE_TO_UPLOAD # PACKAGE_TO_UPLOAD is exported from travis_tag_commit.sh

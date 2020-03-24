@@ -106,14 +106,14 @@
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
             "tsConfig": "projects/@abolis/plate-maker/tsconfig.lib.json",
-            "project": "projects/@abolis/plate-maker/ng-package.json"
-          }
-        ,          "configurations": {
+            "project": "projects/@abolis/plate-maker/package.json"
+          },
+          "configurations": {
             "production": {
               "tsConfig": "projects/@abolis/plate-maker/tsconfig.lib.prod.json"
             }
           }
-},
+        },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {

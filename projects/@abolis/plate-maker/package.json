@@ -1,4 +1,5 @@
 {
+  "$schema": "../../../node_modules/ng-packagr/package.schema.json",
   "name": "@abolis/plate-maker",
   "version": "1.0.2",
   "publishConfig": {
@@ -17,6 +18,18 @@
   "homepage": "https://github.com/abolis-biotechnologies/plate-maker#readme",
   "bugs": {
     "url": "https://github.com/abolis-biotechnologies/plate-maker/issues"
+  },
+  "ngPackage": {
+    "dest": "../../../dist/plate-maker",
+    "lib": {
+      "entryFile": "src/public_api.ts",
+      "umdModuleIds": {
+        "ngx-drag-to-select": "ngx-drag-to-select",
+        "ngx-popper": "ngx-popper",
+        "angular-animations": "angular-animations",
+        "string-algorithms": "string-algorithms"
+      }
+    }
   },
   "peerDependencies": {
     "@angular/common": "^9.0.1",

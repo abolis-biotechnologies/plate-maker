@@ -38,8 +38,6 @@ deploy:
   token: $GITHUB_TOKEN
   file: dist/$PACKAGE_TO_UPLOAD # PACKAGE_TO_UPLOAD is exported from travis_tag_commit.sh
   skip_cleanup: true
-  on:
-    all_branches: true
 
 branches:
   except:

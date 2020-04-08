@@ -1,14 +1,18 @@
 import {
   BARCODE_1,
   BARCODE_2,
+  BLUE_COLOR_1,
   checkAllWells,
   checkPlate,
+  checkWellContent,
   clickOnBootstrapCheckbox,
   mustBeReadonlyPlate,
+  PURPLE_COLOR,
   selectAllWells,
   selectObject,
   selectPlate,
   TURQUOISE_COLOR,
+  wellAt,
   WHITE_COLOR,
 } from '../support/plate-models';
 
@@ -23,13 +27,14 @@ describe('Display plate', () => {
     selectPlate(BARCODE_1);
     checkPlate(BARCODE_1);
     mustBeReadonlyPlate();
-    cy.get('span.badge span').should('have.text', '20');
-    cy.get('.barcode').should('have.length', 20);
+    const nbPlates = 21;
+    cy.get('span.badge span').should('have.text', `${nbPlates}`);
+    cy.get('.barcode').should('have.length', nbPlates);
     cy.get('#barcode-filter').type(BARCODE_1.substring(0, 3));
     cy.get('span.badge span').should('have.text', '1');
     cy.get('.barcode').should('have.length', 1);
     cy.get('#barcode-filter').clear();
-    cy.get('.barcode').should('have.length', 20);
+    cy.get('.barcode').should('have.length', nbPlates);
     selectPlate(BARCODE_2);
     checkPlate(BARCODE_2, [1, 5, 10]);
     mustBeReadonlyPlate();
@@ -77,6 +82,22 @@ describe('Display plate', () => {
     checkPlate(BARCODE_2, [2]);
     selectPlate(BARCODE_1);
     checkPlate(BARCODE_1, [4]);
+  });
+
+  it('should truncate similar content parts, to explicit differences between wells', () => {
+    // related to integration of fix https://github.com/burgaard/string-algorithms/pull/2
+    selectPlate('mediums');
+    const colors = {
+      48: TURQUOISE_COLOR,
+      108: BLUE_COLOR_1,
+      168: PURPLE_COLOR,
+    };
+    [48, 108, 48, 108, 108, 168, 168].forEach((growth, index) => {
+      wellAt(index + 1, 1).then(
+        (well: JQuery) => checkWellContent(well, `oooo - ${growth}h`, colors[growth])
+      );
+      cy.wait(0);
+    });
   });
 
 });

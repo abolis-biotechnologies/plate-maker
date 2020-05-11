@@ -21,6 +21,7 @@ install:
 #   4. if all went well, publish that lib package with confidence
 
 script:
+  - cp README.md LICENSE projects/@abolis/plate-maker/
   - npm run build.lib
   - source travis/travis_package_lib.sh # Execute (source) the script in the current shell environment (to be able to export variables)
   - rm -r dist/plate-maker projects/@abolis/plate-maker # To be 100% sure we use the code of the same .tar package that we will push later
@@ -29,15 +30,31 @@ script:
   - npm run build.app.prod
   - npm run cypress.verify
   - npm run start.server.and.test
-
-before_deploy:
   - source travis/travis_tag_commit.sh
 
+before_deploy:
+  - | # verbatim block operator => multi-line shell script
+    if [[ $TRAVIS_BRANCH = "release" ]]; then
+      cd dist && tar -xvf $PACKAGE_TO_UPLOAD plate-maker && cd plate-maker
+    fi
+
 deploy:
-  provider: releases
-  token: $GITHUB_TOKEN
-  file: dist/$PACKAGE_TO_UPLOAD # PACKAGE_TO_UPLOAD is exported from travis_tag_commit.sh
-  skip_cleanup: true
+  - provider: releases
+    token: $GITHUB_TOKEN
+    file: dist/$PACKAGE_TO_UPLOAD # PACKAGE_TO_UPLOAD is exported from travis_tag_commit.sh
+    skip_cleanup: true
+  - provider: npm
+    email: developers@abolis.fr
+    api_token: $NPM_TOKEN
+    skip_cleanup: true
+    on:
+      branch: release
+
+after_deploy:
+  - |
+    if [[ $TRAVIS_BRANCH = release ]]; then
+      cd ..
+    fi
 
 branches:
   except:

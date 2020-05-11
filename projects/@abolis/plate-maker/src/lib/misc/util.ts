@@ -1,6 +1,7 @@
 import { IterableDiffer, IterableDiffers } from '@angular/core';
 
-import { longestCommonSubstring } from 'string-algorithms';
+// fixme see https://github.com/burgaard/string-algorithms/issues/13
+import { longestCommonSubstring } from 'string-algorithms/src';
 
 
 export class CommonSubstring {

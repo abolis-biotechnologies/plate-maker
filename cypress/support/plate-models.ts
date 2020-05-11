@@ -70,8 +70,12 @@ export function selectOtherObject(letterName: string) {
   return cy.get('#other-field-object').select(`${letterName} greek letter`);
 }
 
+export function wellAt(row: number, col: number, nbCols = 12) {
+  return cy.get('.plate-col').eq((row - 1) * nbCols + (col - 1));
+}
+
 export function checkWell(row: number, col: number, content: string | string[], bgColor: string, nbCols = 12) {
-  cy.get('.plate-col').eq((row - 1) * nbCols + (col - 1)).then(well => checkWellContent(well, content, bgColor));
+  wellAt(row, col, nbCols).then(well => checkWellContent(well, content, bgColor));
 }
 
 export function checkAllWells(content: string | string[], bgColor?: string) {
@@ -111,7 +115,7 @@ function checkColumn(col: number, content: string, shape: number[], bgColor?: st
   }
 }
 
-function checkWellContent(well: JQuery, content: string | string[], bgColor?: string) {
+export function checkWellContent(well: JQuery, content: string | string[], bgColor?: string) {
   if (content instanceof Array) {
     content.forEach(c => expect(well).to.contain(c));
   } else {

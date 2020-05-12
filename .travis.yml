@@ -54,7 +54,7 @@ deploy:
 
 after_deploy:
   - |
-    if [[ $TRAVIS_BRANCH = release ]]; then
+    if [[ $TRAVIS_BRANCH = "release" ]]; then
       cd ..
     fi
 

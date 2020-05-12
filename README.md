@@ -1,6 +1,6 @@
 ![alt text](./projects/app/src/assets/png/plate_maker_dark.png "Plate Maker")
 
-![Version](https://img.shields.io/badge/Version-1.0.2-ff69b4.svg?style=for-the-badge)
+![Version](https://img.shields.io/badge/Version-1.0.3-ff69b4.svg?style=for-the-badge)
 [![Build](https://img.shields.io/travis/com/abolis-biotechnologies/plate-maker/master.svg?style=for-the-badge&logo=travis)](https://travis-ci.com/abolis-biotechnologies/plate-maker)
 ![Technology-1](https://img.shields.io/badge/Angular-9.0.2-red.svg?style=for-the-badge&logo=angular)
 ![Technology-2](https://img.shields.io/badge/MDBootstrap-4.10.0-blueviolet.svg?style=for-the-badge)
@@ -35,7 +35,7 @@ lightweight, fast, configurable and reactive Drag-To-Select (DTS) component for 
     - [Customizing Styles](#customizing-styles)
     - [Main Features](#main-features)
 - [Development Github Release](#development-github-release-for-maintainers)
-- [NPM Release](#npm-release-for-maintainers)
+- [NPM Release](#npm-official-release-for-maintainers)
 - [Versioning](#versioning)
 - [Licence](#licence)
 
@@ -225,21 +225,13 @@ Well content is represented by a `ContentInterface` with 3 following properties:
 
 Each Travis CI pipeline pushes a tar package (only if all its tests passed, obviously) that can be used in other projects at development stage. Therefore, in order to declare this lib in another project's `package.json`, just look for the url of the library in the [github releases](https://github.com/abolis-biotechnologies/plate-maker/releases).
 
-## Development Github Official Release
+# NPM Official Release (for maintainers)
 
+- Merge your changes you want to release with `release` branch
 - Bump up the version `minor`, and possibly `major` (https://semver.org/), in [package.json] of the app and the library
 - npm install
 - Git commit with a message exactly matching `Release YYYY.X.Z`
 - Git push and wait for the job to succeed \o/
-
-# NPM Release (for maintainers)
-
-- Bump up the version `minor`, and possibly `major` (https://semver.org/), in [package.json] of the app and the library
-- npm install
-- ng build @abolis/plate-maker
-- npm login
-- cd dist/plate-maker
-- npm publish
 
 # Versioning
 

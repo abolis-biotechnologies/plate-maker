@@ -24,15 +24,18 @@
               "projects/app/src/assets"
             ],
             "styles": [
-              "node_modules/mdbootstrap/css/bootstrap.min.css",
-              "node_modules/mdbootstrap/scss/mdb-free.scss",
+              "node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss",
+              "node_modules/@fortawesome/fontawesome-free/scss/solid.scss",
+              "node_modules/@fortawesome/fontawesome-free/scss/regular.scss",
+              "node_modules/@fortawesome/fontawesome-free/scss/brands.scss",
+              "node_modules/angular-bootstrap-md/assets/scss/bootstrap/bootstrap.scss",
+              "node_modules/angular-bootstrap-md/assets/scss/mdb.scss",
+              "node_modules/animate.css/animate.css",
               "projects/app/src/styles.scss"
             ],
             "scripts": [
-              "node_modules/mdbootstrap/js/jquery.min.js",
-              "node_modules/mdbootstrap/js/popper.min.js",
-              "node_modules/mdbootstrap/js/bootstrap.min.js",
-              "node_modules/mdbootstrap/js/mdb.min.js"
+              "node_modules/chart.js/dist/Chart.js",
+              "node_modules/hammerjs/hammer.min.js"
             ]
           },
           "configurations": {

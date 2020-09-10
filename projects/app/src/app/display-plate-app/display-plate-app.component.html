@@ -1,19 +1,19 @@
 <div class="container-fluid mt-2" *ngIf="plate.length">
   <div class="row">
     <div class="col-8">
-      <div class="card">
-        <div class="card-body p-0">
+      <mdb-card>
+        <mdb-card-body class="p-0">
           <lib-plate-maker [wells]="plate"
                            [disableSelection]="true"
                            [tick]="tickEmitter">
           </lib-plate-maker>
-        </div>
-      </div>
+        </mdb-card-body>
+      </mdb-card>
     </div>
     <div class="col-4">
-      <div class="card">
-        <div class="card-header elegant-color white-text text-center font-weight-bold">Barcode(s)</div>
-        <div class="card-body">
+      <mdb-card>
+        <mdb-card-header class="elegant-color white-text text-center font-weight-bold">Barcode(s)</mdb-card-header>
+        <mdb-card-body>
           <div class="d-flex justify-content-between pb-2">
             <div class="p-0">
               <div class="custom-control custom-checkbox">
@@ -29,7 +29,7 @@
                   <label class="custom-control-label" for="control-tick">Control tick</label>
                 </div>
                 <div>
-                  <button class="btn btn-sm btn-dark px-3 py-1 my-0"
+                  <button mdbBtn type="button" size="sm" color="dark" class="btn px-3 py-1 my-0"
                           [disabled]="!tickControl.value"
                           (click)="tickEmitter.emit()">
                     tick
@@ -39,7 +39,8 @@
             </div>
             <div class="p-0">
               <div class="md-form form-sm m-0 d-inline-block">
-                <input type="text"
+                <input mdbInput
+                       type="text"
                        id="barcode-filter"
                        class="form-control form-control-sm m-0 p-0"
                        placeholder="Filter"
@@ -59,8 +60,8 @@
             </div>
           </div>
           <div class="py-2" *ngIf="!displayedBarcodes.length">No plate(s) found ¯\_(ツ)_/¯</div>
-        </div>
-      </div>
+        </mdb-card-body>
+      </mdb-card>
     </div>
   </div>
 </div>

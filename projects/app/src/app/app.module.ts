@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { DragToSelectModule } from 'ngx-drag-to-select';
 import { NgxPopperModule } from 'ngx-popper';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { PlateMakerModule } from '@abolis/plate-maker';
 
@@ -22,6 +23,7 @@ import { DisplayPlateAppComponent } from './display-plate-app/display-plate-app.
     ReactiveFormsModule,
     DragToSelectModule.forRoot(),
     NgxPopperModule.forRoot(),
+    MDBBootstrapModule.forRoot(),
     PlateMakerModule,
     AppRoutingModule,
   ],

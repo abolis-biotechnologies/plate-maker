@@ -1,21 +1,21 @@
 <div class="container-fluid mt-2" *ngIf="plate.length">
   <div class="row">
     <div class="col-8">
-      <div class="card">
-        <div class="card-body p-0">
+      <mdb-card>
+        <mdb-card-body class="p-0">
           <lib-plate-maker [wells]="plate"
                            (selected)="selected($event)"
                            (deleted)="clearWells($event)">
           </lib-plate-maker>
-        </div>
-      </div>
+        </mdb-card-body>
+      </mdb-card>
     </div>
     <div class="col-4">
-      <div class="card">
-        <div class="card-header elegant-color white-text text-center font-weight-bold">Configuration</div>
-        <div class="card-body">
+      <mdb-card>
+        <mdb-card-header class="elegant-color white-text text-center font-weight-bold">Configuration</mdb-card-header>
+        <mdb-card-body>
           <div class="md-form">
-            <input type="text" id="barcode" class="form-control">
+            <input mdbInput type="text" id="barcode" class="form-control">
             <label for="barcode">Plate Barcode</label>
           </div>
           <div>
@@ -32,9 +32,11 @@
               <option *ngFor="let othObjValue of otherObjectValues" [value]="othObjValue">{{othObjValue}}</option>
             </select>
           </div>
-          <button class="btn btn-sm btn-dark float-right" (click)="savePlate()">save</button>
-        </div>
-      </div>
+          <button mdbBtn type="button" size="sm" color="dark" class="btn float-right" (click)="savePlate()">
+            save
+          </button>
+        </mdb-card-body>
+      </mdb-card>
       <div id="printed" class="text-center animated fadeIn p-3" *ngIf="savedWells?.length">
         <div>Wells that could have been saved to a backend in real life</div>
         <div *ngFor="let well of savedWells" class="saved-well">

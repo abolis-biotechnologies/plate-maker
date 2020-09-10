@@ -2,8 +2,8 @@
 
 ![Version](https://img.shields.io/badge/Version-1.0.5-ff69b4.svg?style=for-the-badge)
 [![Build](https://img.shields.io/travis/com/abolis-biotechnologies/plate-maker/master.svg?style=for-the-badge&logo=travis)](https://travis-ci.com/abolis-biotechnologies/plate-maker)
-![Technology-1](https://img.shields.io/badge/Angular-9.0.2-red.svg?style=for-the-badge&logo=angular)
-![Technology-2](https://img.shields.io/badge/MDBootstrap-4.10.0-blueviolet.svg?style=for-the-badge)
+![Technology-1](https://img.shields.io/badge/Angular-10.1.1-red.svg?style=for-the-badge&logo=angular)
+![Technology-2](https://img.shields.io/badge/MDBootstrap-9.4.0-blueviolet.svg?style=for-the-badge)
 ![Technology-3](https://img.shields.io/badge/Node-10.16.0-darkgreen.svg?style=for-the-badge&logo=node.js)
 ![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)
 
@@ -13,7 +13,7 @@
 simulate and visualize a [microplate](https://en.wikipedia.org/wiki/Microplate), an assay plate with multiple wells used as small test tubes in biology. **Plate Maker** is 
 flexible and easy to use library, that can be quickly implemented in Angular* projects.
 
-This tool was generated with [Angular CLI](https://github.com/angular/angular-cli) v9.0.2 and tested with _Node_ v10.16.0 and 
+This tool was generated with [Angular CLI](https://github.com/angular/angular-cli) v10.1.1 and tested with _Node_ v10.16.0 and 
 _NPM_ v6.13.6. **Plate Maker** depends on [ngx-drag-to-select](https://www.npmjs.com/package/ngx-drag-to-select) package: 
 lightweight, fast, configurable and reactive Drag-To-Select (DTS) component for Angular 6 and beyond.
 

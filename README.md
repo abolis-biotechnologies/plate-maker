@@ -7,7 +7,7 @@
 ![Technology-3](https://img.shields.io/badge/Node-10.16.0-darkgreen.svg?style=for-the-badge&logo=node.js)
 ![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)
 
-# Introduction 
+# Introduction
 
 **Plate Maker** is an open source frontend tool developed by [Abolis Biotechnologies](http://abolis.fr) to 
 simulate and visualize a [microplate](https://en.wikipedia.org/wiki/Microplate), an assay plate with multiple wells used as small test tubes in biology. **Plate Maker** is 

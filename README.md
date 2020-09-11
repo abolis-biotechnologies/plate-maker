@@ -1,6 +1,6 @@
 ![alt text](./projects/app/src/assets/png/plate_maker_dark.png "Plate Maker")
 
-![Version](https://img.shields.io/badge/Version-1.0.5-ff69b4.svg?style=for-the-badge)
+![Version](https://img.shields.io/badge/Version-1.1.0-ff69b4.svg?style=for-the-badge)
 [![Build](https://img.shields.io/travis/com/abolis-biotechnologies/plate-maker/master.svg?style=for-the-badge&logo=travis)](https://travis-ci.com/abolis-biotechnologies/plate-maker)
 ![Technology-1](https://img.shields.io/badge/Angular-10.1.1-red.svg?style=for-the-badge&logo=angular)
 ![Technology-2](https://img.shields.io/badge/MDBootstrap-9.4.0-blueviolet.svg?style=for-the-badge)

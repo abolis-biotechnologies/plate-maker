@@ -2,7 +2,6 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { DragToSelectModule } from 'ngx-drag-to-select';
-import { NgxPopperModule } from 'ngx-popper';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { PlateMakerComponent } from './plate-maker.component';
@@ -14,7 +13,6 @@ import { PlateMakerComponent } from './plate-maker.component';
   imports: [
     CommonModule,
     DragToSelectModule,
-    NgxPopperModule,
     MDBBootstrapModule
   ],
   exports: [PlateMakerComponent]

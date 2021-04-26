@@ -11,11 +11,7 @@
          [dtsSelectItem]="well"
          [style.background]="well.bgColor"
          [style.cursor]="disableSelection ? 'not-allowed' : 'pointer'"
-         (click)="showContentsDetails(well.contents)"
-         [popper]="stringifyContents(well.contents).join('<br>')"
-         [popperTrigger]="'hover'"
-         [popperDelay]="1000"
-         [popperStyles]="{'background-color': '#333', color: 'white'}">
+         (click)="showContentsDetails(well.contents)">
       <div class="headers col-index" *ngIf="i === 0">{{colIndex + 1}}</div>
       <div *ngFor="let content of well.contents"
            [ngClass]="content.mdb_classes"
@@ -27,7 +23,7 @@
 </dts-select-container>
 
 <div class="content-details-box"
-     *ngIf="contentsDetails && contentsDetails[0] !== 'Well is empty'"
+     *ngIf="contentsDetails"
      [@bounceInRightOnEnter]
      [@bounceOutRightOnLeave]>
   <div class="row">

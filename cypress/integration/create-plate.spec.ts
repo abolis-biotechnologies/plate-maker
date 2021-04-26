@@ -65,11 +65,11 @@ describe('Create Plate', () => {
   it('should show contents details on click', () => {
     cy.get('.content-details-box').should('not.exist');
     selectWell(1, 1);
-    cy.get('.content-details-box').should('not.exist');
+    cy.get('.content-details-box').should('be.visible').and('contain', 'Well is empty');
     selectObject('One');
     cy.get('.content-details-box').should('be.visible').and('contain', 'Main Object: Object number One');
     selectOtherObject('Alpha');
-    cy.get('.content-details-box').should('be.visible').should('contain', `Main Object: Object number One`)
+    cy.get('.content-details-box').should('be.visible').and('contain', `Main Object: Object number One`)
       .and('contain', 'Other Object: Alpha greek letter');
     cy.contains('.content-details-box button', '✕').click();
     cy.get('.content-details-box').should('not.exist');

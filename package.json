@@ -33,7 +33,6 @@
     "core-js": "^3.6.5",
     "hammerjs": "^2.0.8",
     "ngx-drag-to-select": "^3.1.1",
-    "ngx-popper": "^7.0.0",
     "popper.js": "^1.16.1",
     "rxjs": "^6.6.3",
     "string-algorithms": "^1.0.29",

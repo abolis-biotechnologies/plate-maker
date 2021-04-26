@@ -227,8 +227,12 @@ Each Travis CI pipeline pushes a tar package (only if all its tests passed, obvi
 
 # NPM Official Release (for maintainers)
 
-- Merge your changes you want to release with `release` branch
+- Integrate your changes on `master` branch
+- Git commit/push and wait for the job to succeed
+- git checkout `release` branch
+- Merge with `master` branch
 - Bump up the version `minor`, and possibly `major` (https://semver.org/), in [package.json] of the app and the library
+- If needed, update readme
 - npm install
 - Git commit with a message exactly matching `Release YYYY.X.Z`
 - Git push and wait for the job to succeed \o/

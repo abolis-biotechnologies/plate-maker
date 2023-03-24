@@ -22,12 +22,7 @@
   "ngPackage": {
     "dest": "../../../dist/plate-maker",
     "lib": {
-      "entryFile": "src/public_api.ts",
-      "umdModuleIds": {
-        "ngx-drag-to-select": "ngx-drag-to-select",
-        "angular-animations": "angular-animations",
-        "string-algorithms/src": "string-algorithms"
-      }
+      "entryFile": "src/public_api.ts"
     }
   },
   "dependencies": {

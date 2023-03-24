@@ -3,7 +3,7 @@ $selected-item-border-size: 2px;
 $selected-item-border-color: #000000;
 
 // import ngx-drag-to-select scss file
-@import "~ngx-drag-to-select/scss/ngx-drag-to-select";
+@import "ngx-drag-to-select/scss/ngx-drag-to-select";
 
 @mixin prefix($property, $value) {
  -webkit-#{$property}: #{$value};

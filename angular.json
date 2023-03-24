@@ -104,7 +104,7 @@
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/@abolis/plate-maker/tsconfig.lib.json",
-            "project": "projects/@abolis/plate-maker/package.json"
+            "project": "projects/@abolis/plate-maker/ng-package.json"
           },
           "configurations": {
             "production": {

@@ -21,9 +21,6 @@
     "paths": {
       "@abolis/plate-maker": [
         "dist/plate-maker"
-      ],
-      "@abolis/plate-maker/*": [
-        "dist/plate-maker/*"
       ]
     },
     "useDefineForClassFields": false

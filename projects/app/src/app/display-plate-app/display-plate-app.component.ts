@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnDestroy } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 
 import { Content, createEmptyPlate, DummyTruncateContent, getGroup, Group, Well } from '../shared/plate-app.models';
@@ -44,9 +44,9 @@ export class DisplayPlateAppComponent implements OnDestroy {
   };
   plate: Well[][] = [];
   plateShape = {rows: 8, cols: 12};
-  filterBarcodesControl = new FormControl();
-  truncateControl = new FormControl();
-  tickControl = new FormControl();
+  filterBarcodesControl = new UntypedFormControl();
+  truncateControl = new UntypedFormControl();
+  tickControl = new UntypedFormControl();
   tickEmitter: EventEmitter<void>;
   selectedBarcode: string;
   groups: Group[] = [];

@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 import { Content, createEmptyPlate, getGroup, Group, Well } from '../shared/plate-app.models';
@@ -14,8 +14,8 @@ export class CreatePlateAppComponent implements OnDestroy {
   dimensions = {24: {rows: 4, cols: 6}, 96: {rows: 8, cols: 12}};
   groups: Group[] = [];
   selectedWells: Well[];
-  objectControl: FormControl = new FormControl({value: '', disabled: true});
-  otherObjectControl: FormControl = new FormControl({value: '', disabled: true});
+  objectControl: UntypedFormControl = new UntypedFormControl({value: '', disabled: true});
+  otherObjectControl: UntypedFormControl = new UntypedFormControl({value: '', disabled: true});
   objectValues = ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve']
     .map(txt => `Object number ${txt}`);
   otherObjectValues = ['Alpha', 'Beta', 'Gamma', 'Delta'].map(txt => `${txt} greek letter`);
@@ -63,7 +63,7 @@ export class CreatePlateAppComponent implements OnDestroy {
     }
   }
 
-  fillSelectedWells(type: string, obj: FormControl, mdb_classes, colorizeWellBackground = false): void {
+  fillSelectedWells(type: string, obj: UntypedFormControl, mdb_classes, colorizeWellBackground = false): void {
     if (this.selectedWells !== undefined) {
       const content = new Content(type, obj.value, mdb_classes);
       if (colorizeWellBackground) {
